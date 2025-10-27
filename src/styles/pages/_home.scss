@@ -1,10 +1,2 @@
 @use '../base/variables' as variables;
-
-html, body {
-  background-color: variables.$bg-color;
-}
-
-.page {
-  background-color: variables.$bg-color;
-    
-}
+@use '../base/mixins' as *;
