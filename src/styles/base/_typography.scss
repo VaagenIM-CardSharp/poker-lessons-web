@@ -1,0 +1,42 @@
+@use '../base/variables' as variables;
+
+body {
+    font-family: variables.$font-Body;
+    color: variables.$text-color;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: variables.$font-Title;
+    color: variables.$title-color;
+    margin: variables.$spacing-lg 0;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+p {
+    font-family: variables.$font-Body;
+    color: variables.$text-color;
+    margin: variables.$spacing-md 0;
+}
+
+a {
+    color: variables.$title-color;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
