@@ -10,15 +10,8 @@
         rgba(12, 4, 4, 0.95) 100%
     );
     --card-glow: rgba(variables.$accent-color, 0.38);
-    --tx: 0px;
-    --tz: 0px;
-    --rot: 0deg;
-    --roty: 0deg;
-    --scale: 1;
-    --scale-hover: 1;
-    --tz-hover-lift: 40px;
     position: absolute;
-    top: 52%;
+    top: 50%;
     left: 50%;
     width: clamp(190px, 22vw, 250px);
     height: clamp(260px, 32vw, 360px);
@@ -35,18 +28,27 @@
     flex-direction: column;
     justify-content: flex-end;
     overflow: hidden;
-    transform: translate3d(calc(-50% + var(--tx)), -60%, var(--tz)) rotate(var(--rot)) rotateY(var(--roty)) scale(var(--scale));
+    transform: translate3d(
+            calc(-50% + var(--translate-x, 0px)),
+            calc(-50% + var(--translate-y, 0px)),
+            var(--translate-z, 0px)
+        )
+        rotate(var(--rotate-z, 0deg))
+        rotateY(var(--rotate-y, 0deg))
+        scale(var(--scale, 1));
     transform-origin: center center;
     transition:
-        transform 0.6s variables.$transition-base,
-        opacity 0.6s ease,
-        box-shadow 0.6s ease,
-        border-color 0.6s ease;
-    opacity: 0;
-    pointer-events: none;
+        opacity 0.45s ease,
+        box-shadow 0.45s ease,
+        border-color 0.45s ease,
+        filter 0.45s ease;
+    opacity: var(--card-opacity, 0);
+    filter: blur(var(--card-blur, 0px));
     backdrop-filter: blur(22px);
     isolation: isolate;
     transform-style: preserve-3d;
+    pointer-events: auto;
+    z-index: var(--card-layer, 1);
 
     &::before {
         content: '';
@@ -75,9 +77,8 @@
         z-index: 1;
     }
 
-    &:not(.hero-card--center):hover {
+    &:hover {
         border-color: rgba(variables.$accent-color, 0.4);
-        transform: translate3d(calc(-50% + var(--tx)), -60%, calc(var(--tz) + var(--tz-hover-lift))) rotate(var(--rot)) rotateY(var(--roty)) scale(var(--scale-hover));
         box-shadow:
             0 38px 95px rgba(variables.$accent-color, 0.35),
             0 0 65px rgba(variables.$accent-secondary, 0.28),
@@ -164,55 +165,12 @@
     --card-glow: rgba(variables.$accent-secondary, 0.35);
 }
 
-.hero-card--far-left {
-    --tx: -260px;
-    --tz: -110px;
-    --rot: -16deg;
-    --roty: 18deg;
-    --scale: 0.6;
-    --scale-hover: 0.68;
-    --tz-hover-lift: 55px;
-    opacity: 0.12;
-    filter: blur(1.1px);
-    z-index: 1;
-    pointer-events: none;
-}
-
-.hero-card--left {
-    --tx: -185px;
-    --tz: -65px;
-    --rot: -10deg;
-    --roty: 12deg;
-    --scale: 0.78;
-    --scale-hover: 0.86;
-    opacity: 0.38;
-    z-index: 2;
-    pointer-events: none;
-}
-
-.hero-card--center {
-    --card-accent: #{variables.$accent-secondary};
-    --card-gradient: linear-gradient(
-        160deg,
-        rgba(variables.$accent-secondary, 0.92) 0%,
-        rgba(variables.$accent-color, 0.55) 40%,
-        rgba(20, 8, 8, 0.92) 100%
-    );
-    --card-glow: rgba(variables.$accent-color, 0.55);
-    --tx: 0px;
-    --tz: 60px;
-    --rot: 0deg;
-    --roty: 0deg;
-    --scale: 1;
-    --scale-hover: 1.05;
-    --tz-hover-lift: 30px;
-    opacity: 1;
-    z-index: 5;
+.hero-card--focus {
+    border-color: rgba(variables.$accent-color, 0.4);
     box-shadow:
         variables.$shadow-lg,
         0 0 65px rgba(variables.$accent-color, 0.55),
-        0 38px 110px rgba(variables.$accent-color, 0.4);
-    pointer-events: auto;
+        0 42px 120px rgba(variables.$accent-color, 0.4);
 
     &::before {
         opacity: 0.95;
@@ -223,41 +181,6 @@
         inset: 10% 8% 20%;
         opacity: 0.9;
     }
-
-    &:hover {
-        border-color: rgba(variables.$accent-color, 0.55);
-        transform: translate3d(calc(-50% + var(--tx)), -60%, calc(var(--tz) + var(--tz-hover-lift))) rotate(var(--rot)) rotateY(var(--roty)) scale(var(--scale-hover));
-        box-shadow:
-            0 48px 120px rgba(variables.$accent-color, 0.5),
-            0 0 85px rgba(variables.$accent-secondary, 0.35),
-            0 0 55px rgba(variables.$accent-tertiary, 0.45);
-    }
-}
-
-.hero-card--right {
-    --tx: 185px;
-    --tz: -65px;
-    --rot: 10deg;
-    --roty: -12deg;
-    --scale: 0.78;
-    --scale-hover: 0.86;
-    opacity: 0.38;
-    z-index: 3;
-    pointer-events: none;
-}
-
-.hero-card--far-right {
-    --tx: 260px;
-    --tz: -110px;
-    --rot: 16deg;
-    --roty: -18deg;
-    --scale: 0.6;
-    --scale-hover: 0.68;
-    --tz-hover-lift: 55px;
-    opacity: 0.12;
-    filter: blur(1px);
-    z-index: 1;
-    pointer-events: none;
 }
 
 @include tablet {
@@ -272,18 +195,11 @@
         position: relative;
         top: auto;
         left: auto;
-        --tx: 0px;
-        --tz: 0px;
-        --rot: 0deg;
-        --roty: 0deg;
-        --scale: 1;
-        --scale-hover: 1;
-        --tz-hover-lift: 30px;
-        transform: none;
-        opacity: 1;
         width: 100%;
         height: auto;
         min-height: 250px;
+        transform: none;
+        opacity: 1;
         border-radius: 22px;
         margin: 0;
         pointer-events: auto;
@@ -291,10 +207,6 @@
         &::before {
             inset: -40% -25% auto -25%;
             height: 65%;
-        }
-
-        &:hover {
-            transform: none;
         }
     }
 
@@ -304,16 +216,5 @@
 
     .hero-card__glyph {
         font-size: 1.6rem;
-    }
-
-    .hero-card--far-left,
-    .hero-card--left,
-    .hero-card--right,
-    .hero-card--far-right {
-        position: relative;
-        opacity: 1;
-        transform: none;
-        filter: none;
-        pointer-events: auto;
     }
 }

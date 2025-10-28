@@ -6,8 +6,6 @@
 .hero {
   // локальные шорткаты
   $padY: clamp(4rem, 10vw, 7rem);
-  $gap:  clamp(2.5rem, 6vw, 5rem);
-  $rad:  clamp(2rem, 5vw, 3.5rem);
   $tr:   v.$transition-base;
 
   position: relative;
@@ -26,41 +24,19 @@
     transition: transform $tr;
   }
 
-  %nav-btn {
-    position: absolute; top: 50%; translate: 0 -50%;
-    width: 48px; height: 48px; border-radius: 999px;
-    display: inline-flex; align-items: center; justify-content: center;
-    border: 1px solid v.$glass-border; background: v.$glass-bg; color: v.$title-color;
-    backdrop-filter: blur(12px);
-    transition: transform $tr, border-color $tr, box-shadow $tr;
-    z-index: 6;
-
-    &:hover { transform: translateY(-50%) scale(1.08); border-color: v.$accent-color; box-shadow: v.$shadow-glow-soft; }
-  }
-
-  %dot {
-    width: 10px; height: 10px; border-radius: 50%;
-    border: 0; cursor: pointer;
-    background: rgba(0,0,0,.25);
-    transition: transform $tr, background $tr;
-    &:hover { transform: scale(1.1); }
-  }
-
-  &__backdrop {
-    position: absolute; inset: 0; z-index: -1; opacity: .9; border-radius: $rad;
-    box-shadow: inset 0 0 0 1px v.$glass-border;
-    background:
-      radial-gradient(80% 80% at 20% 10%, rgba(255,51,51,.4), transparent 65%),
-      radial-gradient(70% 70% at 80% 20%, rgba(255,107,53,.24), transparent 70%),
-      linear-gradient(160deg, rgba(20,10,10,.7) 0%, rgba(10,5,5,.3) 100%);
-  }
-
   &__inner {
-    display: grid; grid-template-columns: repeat(2, minmax(0,1fr));
-    gap: $gap; align-items: center;
+    display: flex; flex-direction: column; align-items: center;
+    width: 100%;
+    gap: clamp(3rem, 8vw, 4.5rem);
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 6vw, 3.5rem);
+    max-width: min(1400px, 100%);
   }
 
-  &__content { max-width: 520px; }
+  &__content {
+    max-width: 680px;
+    text-align: center;
+  }
 
   &__badge { @extend %pill; margin-bottom: 1.5rem;
     &:hover { transform: translateY(-2px); }
@@ -74,9 +50,17 @@
     -webkit-background-clip:text; -webkit-text-fill-color:transparent;
     margin-bottom: 1.5rem;
   }
-  &__description { max-width: 420px; font-size: 1.05rem; }
+  &__description {
+    max-width: 540px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+  }
 
-  &__actions { display:flex; align-items:center; gap: clamp(.75rem,2vw,1.25rem); margin-top: clamp(1.8rem,4vw,2.5rem); }
+  &__actions {
+    display:flex; align-items:center; justify-content:center;
+    gap: clamp(.75rem,2vw,1.25rem); margin-top: clamp(1.8rem,4vw,2.5rem);
+    flex-wrap: wrap;
+  }
   &__button  { @include button; }
   &__button--ghost{
     background: transparent; border: 1px solid v.$glass-border; color: v.$title-color; box-shadow:none;
@@ -85,62 +69,37 @@
   }
   &__button--primary{ box-shadow: v.$shadow-glow; }
 
-  &__showcase{
-    position: relative; overflow:hidden;
-    padding: clamp(2rem, 4vw, 3.5rem); border-radius: clamp(2rem, 5vw, 3rem);
-    background: v.$glass-bg; border: 1px solid v.$glass-border;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.06), v.$zone-glow;
-  }
-  &__cards{ position:relative; height: clamp(300px, 36vw, 420px); }
-
-  &__nav{ @extend %nav-btn; }
-  &__nav--prev{ left: clamp(.8rem,2vw,1.4rem); }
-  &__nav--next{ right: clamp(.8rem,2vw,1.4rem); }
-
-  &__meta{
-    margin-top: clamp(2.5rem, 4vw, 3rem);
-    display:flex; align-items:center; justify-content:space-between; gap: 1.8rem;
+  &__orbit{
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: clamp(360px, 48vw, 560px);
+    margin: 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    perspective: 1600px;
   }
 
-  &__avatars{ display:flex; align-items:center; }
-  &__avatar{
-    width:44px; height:44px; border-radius:50%;
-    display:inline-flex; align-items:center; justify-content:center;
-    margin-left:-14px; font-weight:600; color:v.$title-color;
-    border:2px solid v.$border-color; box-shadow:v.$shadow-sm;
-
-    &:first-child{ margin-left:0; }
-  }
-
-  &__stat{ display:flex; flex-direction:column; }
-  &__stat-value{ font-size:1.4rem; font-weight:600; color:v.$title-color; }
-  &__stat-label{ font-size:.85rem; color:v.$muted-color; letter-spacing:.06em; text-transform:uppercase; }
-
-  &__dots{
-    margin-top: clamp(1.8rem, 3vw, 2.4rem);
-    display:flex; align-items:center; justify-content:center; gap:.75rem;
-  }
-  &__dot{ @extend %dot; }
-  &__dot--active{
-    background: linear-gradient(130deg, v.$accent-color, v.$accent-secondary);
-    box-shadow: 0 0 16px rgba(168,85,247,.65); transform: scale(1.35);
+  &__cards{
+    position:relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
   }
 
   // responsive (вложил, чтобы не повторять селекторы)
   @include tablet {
-    &__inner{ grid-template-columns: 1fr; }
-    &__content{ max-width:none; }
-    &__showcase{ margin: 0 auto; width: min(540px, 100%); }
+    &__inner{ padding: 0 clamp(1rem, 5vw, 2.5rem); }
+    &__orbit{ height: clamp(320px, 55vw, 520px); }
   }
 
   @include mobile {
     padding: clamp(3rem, 8vw, 5rem) 0;
 
-    &__inner{ grid-template-columns: 1fr; }
-    &__showcase{ padding: clamp(1.5rem, 5vw, 2.5rem); }
-    &__cards{ height: auto; min-height: 250px; }
-    &__meta{ flex-direction: column; align-items: flex-start; }
-    &__actions{ flex-wrap: wrap; }
-    &__button--ghost, &__button--primary{ width:100%; justify-content:center; }
+    &__inner{ padding: 0 clamp(1rem, 6vw, 2rem); }
+    &__orbit{ height: clamp(260px, 90vw, 380px); }
+    &__actions{ width: 100%; }
+    &__button--ghost, &__button--primary{ flex:1 1 100%; justify-content:center; }
   }
 }
