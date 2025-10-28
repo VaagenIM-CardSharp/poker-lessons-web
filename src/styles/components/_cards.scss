@@ -2,40 +2,101 @@
 @use '../base/mixins' as *;
 
 .hero-card {
+    --card-accent: #{variables.$accent-color};
+    --card-gradient: linear-gradient(
+        150deg,
+        rgba(variables.$accent-color, 0.75) 0%,
+        rgba(variables.$accent-secondary, 0.48) 40%,
+        rgba(12, 4, 4, 0.95) 100%
+    );
+    --card-glow: rgba(variables.$accent-color, 0.38);
+    --tx: 0px;
+    --tz: 0px;
+    --rot: 0deg;
+    --roty: 0deg;
+    --scale: 1;
+    --scale-hover: 1;
+    --tz-hover-lift: 40px;
     position: absolute;
     top: 52%;
     left: 50%;
     width: clamp(190px, 22vw, 250px);
     height: clamp(260px, 32vw, 360px);
     padding: clamp(1.4rem, 2vw, 2.1rem);
-    background: var(--card-gradient, variables.$gradient-card);
+    background: var(--card-gradient);
     border-radius: 26px;
-    border: 1px solid variables.$glass-border;
+    border: 1px solid rgba(variables.$accent-color, 0.12);
     box-shadow:
         variables.$shadow-lg,
-        variables.$shadow-md,
-        0 0 32px var(--card-glow, rgba(255, 51, 51, 0.35));
+        0 16px 45px rgba(10, 5, 5, 0.65),
+        0 0 38px var(--card-glow);
     color: variables.$title-color;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     overflow: hidden;
-    transform: translate3d(-50%, -60%, 0) scale(0.7);
-    transition: transform 0.6s variables.$transition-base, opacity 0.6s ease, box-shadow 0.6s ease;
+    transform: translate3d(calc(-50% + var(--tx)), -60%, var(--tz)) rotate(var(--rot)) rotateY(var(--roty)) scale(var(--scale));
+    transform-origin: center center;
+    transition:
+        transform 0.6s variables.$transition-base,
+        opacity 0.6s ease,
+        box-shadow 0.6s ease,
+        border-color 0.6s ease;
     opacity: 0;
     pointer-events: none;
     backdrop-filter: blur(22px);
     isolation: isolate;
+    transform-style: preserve-3d;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -55% -45% auto -45%;
+        height: 70%;
+        background:
+            radial-gradient(ellipse at center, rgba(variables.$accent-secondary, 0.38) 0%, transparent 68%),
+            radial-gradient(circle at 50% 85%, rgba(variables.$accent-color, 0.55), transparent 65%);
+        opacity: 0.85;
+        filter: blur(42px);
+        z-index: -2;
+        pointer-events: none;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 12% 10% 24%;
+        border-radius: 20px;
+        background: linear-gradient(130deg, rgba(255, 255, 255, 0.18) 8%, rgba(255, 255, 255, 0.04) 55%, transparent 90%);
+        mix-blend-mode: screen;
+        opacity: 0.65;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    &:not(.hero-card--center):hover {
+        border-color: rgba(variables.$accent-color, 0.4);
+        transform: translate3d(calc(-50% + var(--tx)), -60%, calc(var(--tz) + var(--tz-hover-lift))) rotate(var(--rot)) rotateY(var(--roty)) scale(var(--scale-hover));
+        box-shadow:
+            0 38px 95px rgba(variables.$accent-color, 0.35),
+            0 0 65px rgba(variables.$accent-secondary, 0.28),
+            0 0 48px rgba(variables.$accent-tertiary, 0.45);
+
+        &::after {
+            opacity: 0.95;
+        }
+    }
 }
 
 .hero-card__overlay {
     position: absolute;
-    inset: -30%;
+    inset: -35%;
     background:
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.22), transparent 55%),
-        radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.35), transparent 60%);
-    opacity: 0.65;
-    filter: blur(35px);
+        radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.18), transparent 55%),
+        radial-gradient(circle at 78% 70%, rgba(variables.$accent-tertiary, 0.45), transparent 63%);
+    opacity: 0.6;
+    filter: blur(38px);
     pointer-events: none;
     z-index: -1;
 }
@@ -60,7 +121,8 @@
     text-transform: uppercase;
     letter-spacing: 0.24em;
     color: variables.$text-color;
-    background: variables.$zone-cta-bg;
+    background: rgba(variables.$accent-color, 0.14);
+    box-shadow: inset 0 0 0 1px rgba(variables.$accent-color, 0.18), 0 8px 20px rgba(variables.$accent-color, 0.18);
     border-radius: 999px;
     padding: 0.35rem 0.8rem;
     margin-bottom: 0.9rem;
@@ -69,6 +131,9 @@
 .hero-card__heading {
     font-size: clamp(1.2rem, 2vw, 1.6rem);
     margin-bottom: 0.6rem;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.95), rgba(variables.$accent-secondary, 0.75));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero-card__text {
@@ -77,40 +142,118 @@
     margin: 0;
 }
 
+.hero-card:nth-child(1),
+.hero-card:nth-child(5) {
+    --card-gradient: linear-gradient(
+        150deg,
+        rgba(variables.$accent-tertiary, 0.65) 0%,
+        rgba(variables.$accent-color, 0.32) 45%,
+        rgba(12, 4, 4, 0.92) 100%
+    );
+    --card-glow: rgba(variables.$accent-tertiary, 0.3);
+}
+
+.hero-card:nth-child(2),
+.hero-card:nth-child(4) {
+    --card-gradient: linear-gradient(
+        150deg,
+        rgba(variables.$accent-color, 0.78) 0%,
+        rgba(variables.$accent-secondary, 0.55) 45%,
+        rgba(12, 5, 5, 0.94) 100%
+    );
+    --card-glow: rgba(variables.$accent-secondary, 0.35);
+}
+
 .hero-card--far-left {
-    transform: translate3d(-260px, -60%, 0) rotate(-16deg) scale(0.62);
-    opacity: 0.08;
+    --tx: -260px;
+    --tz: -110px;
+    --rot: -16deg;
+    --roty: 18deg;
+    --scale: 0.6;
+    --scale-hover: 0.68;
+    --tz-hover-lift: 55px;
+    opacity: 0.12;
     filter: blur(1.1px);
     z-index: 1;
     pointer-events: none;
 }
 
 .hero-card--left {
-    transform: translate3d(-190px, -58%, 0) rotate(-10deg) scale(0.78);
-    opacity: 0.35;
+    --tx: -185px;
+    --tz: -65px;
+    --rot: -10deg;
+    --roty: 12deg;
+    --scale: 0.78;
+    --scale-hover: 0.86;
+    opacity: 0.38;
     z-index: 2;
     pointer-events: none;
 }
 
 .hero-card--center {
-    transform: translate3d(-50%, -60%, 0) rotate(0deg) scale(1);
+    --card-accent: #{variables.$accent-secondary};
+    --card-gradient: linear-gradient(
+        160deg,
+        rgba(variables.$accent-secondary, 0.92) 0%,
+        rgba(variables.$accent-color, 0.55) 40%,
+        rgba(20, 8, 8, 0.92) 100%
+    );
+    --card-glow: rgba(variables.$accent-color, 0.55);
+    --tx: 0px;
+    --tz: 60px;
+    --rot: 0deg;
+    --roty: 0deg;
+    --scale: 1;
+    --scale-hover: 1.05;
+    --tz-hover-lift: 30px;
     opacity: 1;
     z-index: 5;
     box-shadow:
         variables.$shadow-lg,
-        0 0 65px var(--card-glow, rgba(255, 51, 51, 0.45));
+        0 0 65px rgba(variables.$accent-color, 0.55),
+        0 38px 110px rgba(variables.$accent-color, 0.4);
     pointer-events: auto;
+
+    &::before {
+        opacity: 0.95;
+        filter: blur(48px);
+    }
+
+    &::after {
+        inset: 10% 8% 20%;
+        opacity: 0.9;
+    }
+
+    &:hover {
+        border-color: rgba(variables.$accent-color, 0.55);
+        transform: translate3d(calc(-50% + var(--tx)), -60%, calc(var(--tz) + var(--tz-hover-lift))) rotate(var(--rot)) rotateY(var(--roty)) scale(var(--scale-hover));
+        box-shadow:
+            0 48px 120px rgba(variables.$accent-color, 0.5),
+            0 0 85px rgba(variables.$accent-secondary, 0.35),
+            0 0 55px rgba(variables.$accent-tertiary, 0.45);
+    }
 }
 
 .hero-card--right {
-    transform: translate3d(90px, -58%, 0) rotate(10deg) scale(0.82);
-    opacity: 0.45;
+    --tx: 185px;
+    --tz: -65px;
+    --rot: 10deg;
+    --roty: -12deg;
+    --scale: 0.78;
+    --scale-hover: 0.86;
+    opacity: 0.38;
     z-index: 3;
     pointer-events: none;
 }
 
 .hero-card--far-right {
-    transform: translate3d(190px, -52%, 0) rotate(18deg) scale(0.66);
+    --tx: 260px;
+    --tz: -110px;
+    --rot: 16deg;
+    --roty: -18deg;
+    --scale: 0.6;
+    --scale-hover: 0.68;
+    --tz-hover-lift: 55px;
     opacity: 0.12;
     filter: blur(1px);
     z-index: 1;
@@ -129,6 +272,13 @@
         position: relative;
         top: auto;
         left: auto;
+        --tx: 0px;
+        --tz: 0px;
+        --rot: 0deg;
+        --roty: 0deg;
+        --scale: 1;
+        --scale-hover: 1;
+        --tz-hover-lift: 30px;
         transform: none;
         opacity: 1;
         width: 100%;
@@ -137,6 +287,15 @@
         border-radius: 22px;
         margin: 0;
         pointer-events: auto;
+
+        &::before {
+            inset: -40% -25% auto -25%;
+            height: 65%;
+        }
+
+        &:hover {
+            transform: none;
+        }
     }
 
     .hero-card + .hero-card {
