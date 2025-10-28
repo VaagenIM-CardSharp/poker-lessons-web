@@ -5,7 +5,7 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    padding: clamp(1.5rem, 4vw, 2.4rem) 0;
+    padding: 10px;
     background: variables.$glass-bg;
     backdrop-filter: blur(22px);
     border-bottom: 1px solid variables.$glass-border;

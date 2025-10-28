@@ -1,6 +1,8 @@
 @use '../base/variables' as v;
 @use '../base/mixins' as *;
-
+.main{
+  padding: 30px 30px;
+}
 .hero {
   // локальные шорткаты
   $padY: clamp(4rem, 10vw, 7rem);
