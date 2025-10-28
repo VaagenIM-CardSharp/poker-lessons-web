@@ -1,220 +1,244 @@
-@use '../base/variables' as variables;
+@use '../base/variables' as *;
 @use '../base/mixins' as *;
 
 .hero-card {
-    --card-accent: #{variables.$accent-color};
-    --card-gradient: linear-gradient(
-        150deg,
-        rgba(variables.$accent-color, 0.75) 0%,
-        rgba(variables.$accent-secondary, 0.48) 40%,
-        rgba(12, 4, 4, 0.95) 100%
-    );
-    --card-glow: rgba(variables.$accent-color, 0.38);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: clamp(190px, 22vw, 250px);
-    height: clamp(260px, 32vw, 360px);
-    padding: clamp(1.4rem, 2vw, 2.1rem);
-    background: var(--card-gradient);
-    border-radius: 26px;
-    border: 1px solid rgba(variables.$accent-color, 0.12);
-    box-shadow:
-        variables.$shadow-lg,
-        0 16px 45px rgba(10, 5, 5, 0.65),
-        0 0 38px var(--card-glow);
-    color: variables.$title-color;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    overflow: hidden;
-    transform: translate3d(
-            calc(-50% + var(--translate-x, 0px)),
-            calc(-50% + var(--translate-y, 0px)),
-            var(--translate-z, 0px)
-        )
-        rotate(var(--rotate-z, 0deg))
-        rotateY(var(--rotate-y, 0deg))
-        scale(var(--scale, 1));
-    transform-origin: center center;
-    transition:
-        opacity 0.45s ease,
-        box-shadow 0.45s ease,
-        border-color 0.45s ease,
-        filter 0.45s ease;
-    opacity: var(--card-opacity, 0);
-    filter: blur(var(--card-blur, 0px));
-    backdrop-filter: blur(22px);
-    isolation: isolate;
-    transform-style: preserve-3d;
-    pointer-events: auto;
-    z-index: var(--card-layer, 1);
+  --card-accent: #{$accent-color};
+  --card-gradient: linear-gradient(
+    150deg,
+    rgba($accent-color, 0.75) 0%,
+    rgba($accent-secondary, 0.48) 40%,
+    rgba(12, 4, 4, 0.95) 100%
+  );
+  --card-glow: rgba(#{$accent-color}, .38);
 
-    &::before {
-        content: '';
-        position: absolute;
-        inset: -55% -45% auto -45%;
-        height: 70%;
-        background:
-            radial-gradient(ellipse at center, rgba(variables.$accent-secondary, 0.38) 0%, transparent 68%),
-            radial-gradient(circle at 50% 85%, rgba(variables.$accent-color, 0.55), transparent 65%);
-        opacity: 0.85;
-        filter: blur(42px);
-        z-index: -2;
-        pointer-events: none;
-    }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240px;
+  height: 350px;
+  padding: 28px;
+  border-radius: 26px;
+  border: 1px solid rgba($accent-color, .12);
+  background: var(--card-gradient);
+  color: $title-color;
+  overflow: hidden;
+  pointer-events: auto;
+  isolation: isolate;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  transform: translate3d(
+      calc(-50% + var(--translate-x, 0px)),
+      calc(-50% + var(--translate-y, 0px)),
+      var(--translate-z, 0px)
+    )
+    rotate(var(--rotate-z, 0deg))
+    rotateY(var(--rotate-y, 0deg))
+    scale(var(--scale, 1));
+
+  transform-origin: center;
+  transform-style: preserve-3d;
+
+  opacity: var(--card-opacity, 0);
+  filter: blur(var(--card-blur, 0px));
+  z-index: var(--card-layer, 1);
+
+  box-shadow:
+    $shadow-lg,
+    0 16px 45px rgba(10,5,5,.65),
+    0 0 38px var(--card-glow);
+
+  backdrop-filter: blur(22px);
+
+  transition:
+    opacity .45s ease,
+    box-shadow .45s ease,
+    border-color .45s ease,
+    filter .45s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -55% -45% auto -45%;
+    height: 70%;
+    opacity: .85;
+    filter: blur(42px);
+    pointer-events: none;
+    z-index: -2;
+
+    background:
+      radial-gradient(ellipse at center, rgba($accent-secondary,.38), transparent 68%),
+      radial-gradient(circle at 50% 85%, rgba($accent-color,.55), transparent 65%);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 12% 10% 24%;
+    border-radius: 20px;
+    opacity: .65;
+    z-index: 1;
+    transition: opacity .5s ease;
+    pointer-events: none;
+    mix-blend-mode: screen;
+
+    background: linear-gradient(
+      130deg,
+      rgba(255,255,255,.18) 8%,
+      rgba(255,255,255,.04) 55%,
+      transparent 90%
+    );
+  }
+
+  &:hover {
+    border-color: rgba($accent-color,.4);
+    box-shadow:
+      $shadow-lg,
+      0 38px 95px rgba($accent-color,.35),
+      0 0 65px rgba($accent-secondary,.28),
+      0 0 48px rgba($accent-tertiary,.45);
 
     &::after {
-        content: '';
-        position: absolute;
-        inset: 12% 10% 24%;
-        border-radius: 20px;
-        background: linear-gradient(130deg, rgba(255, 255, 255, 0.18) 8%, rgba(255, 255, 255, 0.04) 55%, transparent 90%);
-        mix-blend-mode: screen;
-        opacity: 0.65;
-        transition: opacity 0.5s ease;
-        pointer-events: none;
-        z-index: 1;
+      opacity: .95;
     }
+  }
 
-    &:hover {
-        border-color: rgba(variables.$accent-color, 0.4);
-        box-shadow:
-            0 38px 95px rgba(variables.$accent-color, 0.35),
-            0 0 65px rgba(variables.$accent-secondary, 0.28),
-            0 0 48px rgba(variables.$accent-tertiary, 0.45);
+  // ===== INNER =====
 
-        &::after {
-            opacity: 0.95;
-        }
-    }
-}
-
-.hero-card__overlay {
+  &__overlay {
     position: absolute;
     inset: -35%;
-    background:
-        radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.18), transparent 55%),
-        radial-gradient(circle at 78% 70%, rgba(variables.$accent-tertiary, 0.45), transparent 63%);
-    opacity: 0.6;
+    opacity: .6;
     filter: blur(38px);
     pointer-events: none;
     z-index: -1;
-}
 
-.hero-card__glyph {
+    background:
+      radial-gradient(circle at 20% 25%, rgba(255,255,255,.18), transparent 55%),
+      radial-gradient(circle at 78% 70%, rgba($accent-tertiary,.45), transparent 63%);
+  }
+
+  &__glyph {
     position: absolute;
-    top: 1.1rem;
-    right: 1.2rem;
-    font-size: clamp(1.8rem, 2.5vw, 2.4rem);
-    opacity: 0.8;
-}
+    top: 22px;
+    right: 24px;
+    font-size: 2.2rem;
+    opacity: .8;
+  }
 
-.hero-card__body {
+  &__body {
     position: relative;
-}
+  }
 
-.hero-card__category {
+  &__category {
     display: inline-flex;
     align-items: center;
-    gap: 0.3rem;
-    font-size: 0.75rem;
+    gap: .3rem;
+    font-size: .75rem;
     text-transform: uppercase;
-    letter-spacing: 0.24em;
-    color: variables.$text-color;
-    background: rgba(variables.$accent-color, 0.14);
-    box-shadow: inset 0 0 0 1px rgba(variables.$accent-color, 0.18), 0 8px 20px rgba(variables.$accent-color, 0.18);
+    letter-spacing: .24em;
+    color: $text-color;
+    padding: .35rem .8rem;
+    margin-bottom: .9rem;
     border-radius: 999px;
-    padding: 0.35rem 0.8rem;
-    margin-bottom: 0.9rem;
-}
 
-.hero-card__heading {
-    font-size: clamp(1.2rem, 2vw, 1.6rem);
-    margin-bottom: 0.6rem;
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.95), rgba(variables.$accent-secondary, 0.75));
+    background: rgba($accent-color,.14);
+    box-shadow:
+      inset 0 0 0 1px rgba($accent-color,.18),
+      0 8px 20px rgba($accent-color,.18);
+  }
+
+  &__heading {
+    font-size: 1.4rem;
+    margin-bottom: .6rem;
+
+    background: linear-gradient(
+      120deg,
+      rgba(255,255,255,.95),
+      rgba($accent-secondary,.75)
+    );
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
+  }
 
-.hero-card__text {
-    font-size: 0.95rem;
-    color: variables.$muted-color;
+  &__text {
+    font-size: .95rem;
     margin: 0;
-}
+    color: $muted-color;
+  }
 
-.hero-card:nth-child(1),
-.hero-card:nth-child(5) {
+  // ===== MODIFIERS =====
+
+  &--secondary {
     --card-gradient: linear-gradient(
-        150deg,
-        rgba(variables.$accent-tertiary, 0.65) 0%,
-        rgba(variables.$accent-color, 0.32) 45%,
-        rgba(12, 4, 4, 0.92) 100%
+      150deg,
+      rgba($accent-color,.78) 0%,
+      rgba($accent-secondary,.55) 45%,
+      rgba(12,5,5,.94) 100%
     );
-    --card-glow: rgba(variables.$accent-tertiary, 0.3);
-}
+    --card-glow: rgba($accent-secondary,.35);
+  }
 
-.hero-card:nth-child(2),
-.hero-card:nth-child(4) {
+  &--tertiary {
     --card-gradient: linear-gradient(
-        150deg,
-        rgba(variables.$accent-color, 0.78) 0%,
-        rgba(variables.$accent-secondary, 0.55) 45%,
-        rgba(12, 5, 5, 0.94) 100%
+      150deg,
+      rgba($accent-tertiary,.65) 0%,
+      rgba($accent-color,.32) 45%,
+      rgba(12,4,4,.92) 100%
     );
-    --card-glow: rgba(variables.$accent-secondary, 0.35);
-}
+    --card-glow: rgba($accent-tertiary,.3);
+  }
 
-.hero-card--focus {
-    border-color: rgba(variables.$accent-color, 0.4);
+  &--focus {
+    border-color: rgba($accent-color,.4);
     box-shadow:
-        variables.$shadow-lg,
-        0 0 65px rgba(variables.$accent-color, 0.55),
-        0 42px 120px rgba(variables.$accent-color, 0.4);
+      $shadow-lg,
+      0 0 65px rgba($accent-color,.55),
+      0 42px 120px rgba($accent-color,.4);
 
     &::before {
-        opacity: 0.95;
-        filter: blur(48px);
+      opacity: .95;
+      filter: blur(48px);
     }
 
     &::after {
-        inset: 10% 8% 20%;
-        opacity: 0.9;
+      inset: 10% 8% 20%;
+      opacity: .9;
     }
-}
+  }
 
-@include tablet {
-    .hero-card {
-        width: clamp(180px, 26vw, 220px);
-        height: clamp(240px, 32vw, 320px);
-    }
-}
+  @include tablet {
+    width: 220px;
+    height: 300px;
+  }
 
-@include mobile {
-    .hero-card {
-        position: relative;
-        top: auto;
-        left: auto;
-        width: 100%;
-        height: auto;
-        min-height: 250px;
-        transform: none;
-        opacity: 1;
-        border-radius: 22px;
-        margin: 0;
-        pointer-events: auto;
+  @include mobile {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    min-height: 250px;
+    transform: none;
+    opacity: 1;
+    border-radius: 22px;
+    margin: 0;
+    pointer-events: auto;
 
-        &::before {
-            inset: -40% -25% auto -25%;
-            height: 65%;
-        }
+    &::before {
+      inset: -40% -25% auto -25%;
+      height: 65%;
     }
 
-    .hero-card + .hero-card {
-        margin-top: variables.$spacing-lg;
+    & + & {
+      margin-top: $spacing-lg;
     }
 
-    .hero-card__glyph {
-        font-size: 1.6rem;
+    &__glyph {
+      font-size: 1.6rem;
     }
+  }
 }

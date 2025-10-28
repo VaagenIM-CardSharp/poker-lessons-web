@@ -1,40 +1,54 @@
-@use '../base/variables' as variables;
+@use '../base/variables' as *;
 
-// Базові стилі тексту сторінки
+// Базові стилі тіла сторінки
 body {
-  font-family: variables.$font-Body;
-  color: variables.$text-color;
+  font-family: $font-Body;
+  color: $text-color;
   line-height: 1.7;
+  font-size: 16px;
 }
 
-// Загальні стилі для всіх заголовків
-h1, h2, h3, h4, h5, h6 {
-  font-family: variables.$font-Title;
-  color: variables.$title-color;
-  margin-block: variables.$spacing-md;
+// Заголовки
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-Title;
+  color: $title-color;
+  margin: $spacing-md 0;
   line-height: 1.2;
   font-weight: 600;
 }
 
-// Адаптивні розміри заголовків
-h1 { font-size: clamp(2.8rem, 5vw, 4rem); }
-h2 { font-size: clamp(2.2rem, 4vw, 3rem); }
-h3 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+// Розміри заголовків (без clamp)
+h1 { font-size: 48px; }
+h2 { font-size: 36px; }
+h3 { font-size: 28px; }
 
-// Стилі абзаців
-p {
-  color: variables.$muted-color;
-  margin-block: variables.$spacing-md;
-  font-size: 1rem;
+// Адаптив
+@media (max-width: 768px) {
+  h1 { font-size: 36px; }
+  h2 { font-size: 28px; }
+  h3 { font-size: 22px; }
 }
 
-// Стилі посилань (hover і focus)
+// Абзаци
+p {
+  color: $muted-color;
+  margin: $spacing-md 0;
+  font-size: 16px;
+}
+
+// Посилання
 a {
   color: inherit;
   text-decoration: none;
-  transition: opacity variables.$transition-base;
+  transition: opacity $transition-base;
 
-  &:hover {
+  &:hover,
+  &:focus {
     opacity: 0.85;
   }
 }

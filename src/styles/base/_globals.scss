@@ -1,4 +1,4 @@
-@use '../base/variables' as variables;
+@use '../base/variables' as *;
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -8,12 +8,12 @@ body {
   background:
     radial-gradient(120% 120% at 10% 10%, rgba(255, 51, 51, 0.18), transparent 55%),
     radial-gradient(90% 90% at 80% 0%, rgba(255, 107, 53, 0.12), transparent 60%),
-    variables.$bg-color;
-  color: variables.$text-color;
+    $bg-color;
+  color: $text-color;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: variables.$font-Body;
+  font-family: $font-Body;
 }
 
 body::before {
@@ -30,7 +30,7 @@ body::before {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding-inline: variables.$spacing-lg; 
+  padding-inline: $spacing-lg;
 }
 
 main { flex: 1; }

@@ -1,6 +1,6 @@
 @use '../base/variables' as variables;
 
-.page { display: grid; row-gap: clamp(4rem, 8vw, 6.5rem); }
+.page { display: grid; row-gap:2rem; }
 
 .page > section {
   /* без внешних margin */

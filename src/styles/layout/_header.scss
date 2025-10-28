@@ -6,9 +6,12 @@
 
 // Стиль "шапки" сайту (завжди прикріплена до верху)
 .header {
-  position: sticky; top: 0; z-index: 10; padding: 18px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 18px 24px;
 
-  // Внутрішня капсула з ефектом скла та розміткою grid
+  // Внутрішня капсула
   &__inner {
     position: relative;
     display: grid;
@@ -17,107 +20,150 @@
     align-items: center;
     gap: 2rem;
     border-radius: 999px;
-    padding: 0.75rem 1.4rem;
-    background: linear-gradient(135deg, rgba(20, 10, 10, 0.62) 0%, rgba(12, 4, 4, 0.55) 55%, rgba(8, 3, 3, 0.6) 100%);
-    border: 1px solid rgba($accent-color, 0.12);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 18px 45px rgba($accent-color, 0.18);
+    padding: 12px 22px;
+    background: linear-gradient(135deg, rgba(20,10,10,.62), rgba(12,4,4,.55) 55%, rgba(8,3,3,.6));
+    border: 1px solid rgba($accent-color, .12);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 18px 45px rgba($accent-color, .18);
     backdrop-filter: blur(18px);
     overflow: hidden;
 
-    // Світловий глоу-ефект поверх капсули
     &::before {
-      content: ''; position: absolute; inset: 0; border-radius: inherit;
-      background: radial-gradient(120% 120% at 0% 0%, rgba($accent-color, 0.22), transparent 55%);
-      opacity: .45; pointer-events: none; z-index: -1;
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(120% 120% at 0% 0%, rgba($accent-color, .22), transparent 55%);
+      opacity: .45;
+      pointer-events: none;
+      z-index: -1;
     }
   }
 
-  // Блок з логотипом та назвою
+  // Бренд
   &__brand {
     grid-area: brand;
-    display: inline-flex; align-items: center; gap: .9rem;
-    color: $title-color; font: 600 1rem $font-Title;
+    display: inline-flex;
+    align-items: center;
+    gap: .9rem;
+    color: $title-color;
+    font: 600 1rem $font-Title;
   }
 
-  // Іконка/символ бренду
+  // Символ
   &__symbol {
-    width: 38px; height: 38px; border-radius: 14px;
+    width: 38px;
+    height: 38px;
+    border-radius: 14px;
     background: linear-gradient(135deg, $accent-color, $accent-secondary);
     box-shadow: $shadow-symbol;
-    position: relative;
-    display: inline-flex; align-items: center; justify-content: center;
-    color: $symbol-text; font-weight: 700; font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: $symbol-text;
+    font-weight: 700;
+    font-size: 1rem;
   }
 
-  // Навігаційні лінки в ряд на grid
+  // Навігація
   &__nav {
-    grid-area: nav; @extend %row-grid;
+    grid-area: nav;
+    @extend %row-grid;
     justify-content: end;
-    gap: clamp(1.2rem, 3vw, 2rem);
-    font-size: .9rem; letter-spacing: .08em; text-transform: uppercase;
+    gap: 1.8rem;
+    font-size: .9rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
   }
 
-  // Однотипний стиль посилань у шапці
+  // Лінк
   &__link {
-    color: $muted-color; position: relative; padding: .35rem 0;
+    color: $muted-color;
+    position: relative;
+    padding: .35rem 0;
     transition: color $transition-base, transform $transition-base;
 
-    // Підсвічування при наведенні
-    &:hover { color: $title-color; transform: translateY(-2px); }
+    &:hover {
+      color: $title-color;
+      transform: translateY(-2px);
+    }
 
-    // Червоно-градієнтна лінія під лінком
     &::after {
-      content: ''; position: absolute; left: 0; bottom: -.55rem; width: 100%; height: 3px; border-radius: 999px;
-      background: linear-gradient(90deg, $accent-color 20%, rgba($accent-color, .4));
-      transform: scaleX(0); transform-origin: left; transition: transform $transition-base;
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -.55rem;
+      width: 100%;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, $accent-color 20%, rgba($accent-color,.4));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform $transition-base;
     }
     &:hover::after { transform: scaleX(1); }
   }
 
-  // Активне посилання (підкреслене постійно)
-  &__link--active { color: $title-color; &::after { transform: scaleX(1); } }
+  // Активний
+  &__link--active {
+    color: $title-color;
+    &::after { transform: scaleX(1); }
+  }
 
-  // Контейнер дій (кнопок) справа
-  &__actions { grid-area: actions; @extend %row-grid; gap: 1rem; }
+  // Кнопки справа
+  &__actions {
+    grid-area: actions;
+    @extend %row-grid;
+    gap: 1rem;
+  }
 
-  // Універсальний стиль кнопок у шапці
+  // Кнопка
   &__action {
     @include button;
     padding: ($spacing-sm * 1.7) $spacing-lg;
-    font-size: .9rem; border-radius: 999px;
+    font-size: .9rem;
+    border-radius: 999px;
 
-    // Прозорий варіант кнопки (ghost)
     &--ghost {
-      background: rgba($accent-color, .12);
-      border: 1px solid rgba($accent-color, .18);
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+      background: rgba($accent-color,.12);
+      border: 1px solid rgba($accent-color,.18);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
       color: $title-color;
 
-      // Більш яскравий фон при наведенні
-      &:hover { border-color: rgba($accent-color, .36); background: rgba($accent-color, .18); }
+      &:hover {
+        border-color: rgba($accent-color,.36);
+        background: rgba($accent-color,.18);
+      }
     }
   }
 }
 
-// Мобільна адаптація макету у шапці
+// Мобільна адаптація
 @include mobile {
   .header {
-    // Стекуємо блоки вертикально
+
     &__inner {
       grid-template-columns: 1fr;
-      grid-template-areas: "brand" "nav" "actions";
-      padding: 1.1rem; border-radius: clamp(1.4rem, 6vw, 2rem); row-gap: 1rem;
+      grid-template-areas:
+        "brand"
+        "nav"
+        "actions";
+      border-radius: 22px;
+      padding: 18px;
+      row-gap: 1rem;
     }
 
-    // Меню в 2 колонки на мобільному
+    // 2 колонки
     &__nav,
     &__actions {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      width: 100%; gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+      width: 100%;
+      gap: 1rem;
     }
 
-    // Кнопки розтягуються на всю ширину
+    // Повна ширина кнопок
     &__action,
-    &__action--ghost { width: 100%; }
+    &__action--ghost {
+      width: 100%;
+    }
   }
 }

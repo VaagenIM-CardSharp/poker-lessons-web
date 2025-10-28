@@ -1,19 +1,34 @@
 @use '../base/variables' as *;
+@use '../base/mixins' as *;
 
-// Блок низу сторінки з блюром та роздільною лінією
 .footer {
-  margin-top: clamp(4rem, 10vw, 6rem);
-  padding: clamp(2.5rem, 5vw, 3.5rem) 0;
+  margin-top: 6rem;
+  padding: 3.5rem 0;
   border-top: 1px solid $border-color;
   background: $footer-bg;
   backdrop-filter: blur(18px);
 
-  // Текст у футері
   p {
     text-align: center;
     color: $footer-text;
     font-size: .9rem;
     letter-spacing: .08em;
     text-transform: uppercase;
+  }
+}
+
+// Планшет
+@include tablet {
+  .footer {
+    margin-top: 5rem;
+    padding: 3rem 0;
+  }
+}
+
+// Мобільний
+@include mobile {
+  .footer {
+    margin-top: 4rem;
+    padding: 2.5rem 0;
   }
 }
