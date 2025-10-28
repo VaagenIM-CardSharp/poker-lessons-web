@@ -1,164 +1,123 @@
-@use '../base/variables' as variables;
+@use '../base/variables' as *;
 @use '../base/mixins' as *;
 
-.header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    padding: 18px 24px;
-    background: transparent;
-    backdrop-filter: none;
-    border-bottom: none;
-}
+// Плейсхолдер для горизонтального рядка на grid
+%row-grid { display: grid; grid-auto-flow: column; align-items: center; }
 
-.header__inner {
+// Стиль "шапки" сайту (завжди прикріплена до верху)
+.header {
+  position: sticky; top: 0; z-index: 10; padding: 18px 24px;
+
+  // Внутрішня капсула з ефектом скла та розміткою grid
+  &__inner {
     position: relative;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "brand nav actions";
     align-items: center;
-    justify-content: space-between;
     gap: 2rem;
     border-radius: 999px;
     padding: 0.75rem 1.4rem;
     background: linear-gradient(135deg, rgba(20, 10, 10, 0.62) 0%, rgba(12, 4, 4, 0.55) 55%, rgba(8, 3, 3, 0.6) 100%);
-    border: 1px solid rgba(variables.$accent-color, 0.12);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.04),
-        0 18px 45px rgba(variables.$accent-color, 0.18);
+    border: 1px solid rgba($accent-color, 0.12);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 18px 45px rgba($accent-color, 0.18);
     backdrop-filter: blur(18px);
     overflow: hidden;
-    isolation: isolate;
 
+    // Світловий глоу-ефект поверх капсули
     &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        background: radial-gradient(120% 120% at 0% 0%, rgba(variables.$accent-color, 0.22), transparent 55%);
-        opacity: 0.45;
-        pointer-events: none;
-        z-index: -1;
+      content: ''; position: absolute; inset: 0; border-radius: inherit;
+      background: radial-gradient(120% 120% at 0% 0%, rgba($accent-color, 0.22), transparent 55%);
+      opacity: .45; pointer-events: none; z-index: -1;
     }
-}
+  }
 
-.header__brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.9rem;
-    color: variables.$title-color;
-    font-weight: 600;
-    font-family: variables.$font-Title;
-    letter-spacing: 0.02em;
-}
+  // Блок з логотипом та назвою
+  &__brand {
+    grid-area: brand;
+    display: inline-flex; align-items: center; gap: .9rem;
+    color: $title-color; font: 600 1rem $font-Title;
+  }
 
-.header__symbol {
-    width: 38px;
-    height: 38px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, variables.$accent-color, variables.$accent-secondary);
-    box-shadow: variables.$shadow-symbol;
+  // Іконка/символ бренду
+  &__symbol {
+    width: 38px; height: 38px; border-radius: 14px;
+    background: linear-gradient(135deg, $accent-color, $accent-secondary);
+    box-shadow: $shadow-symbol;
     position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: variables.$symbol-text;
-    font-weight: 700;
-    font-size: 1rem;
-}
+    display: inline-flex; align-items: center; justify-content: center;
+    color: $symbol-text; font-weight: 700; font-size: 1rem;
+  }
 
-.header__nav {
-    display: flex;
-    align-items: center;
+  // Навігаційні лінки в ряд на grid
+  &__nav {
+    grid-area: nav; @extend %row-grid;
+    justify-content: end;
     gap: clamp(1.2rem, 3vw, 2rem);
-    font-size: 0.9rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
+    font-size: .9rem; letter-spacing: .08em; text-transform: uppercase;
+  }
 
-.header__link {
-    color: variables.$muted-color;
-    position: relative;
-    padding: 0.35rem 0;
-    transition: color variables.$transition-base, transform variables.$transition-base;
+  // Однотипний стиль посилань у шапці
+  &__link {
+    color: $muted-color; position: relative; padding: .35rem 0;
+    transition: color $transition-base, transform $transition-base;
 
-    &:hover {
-        color: variables.$title-color;
-        transform: translateY(-2px);
-    }
+    // Підсвічування при наведенні
+    &:hover { color: $title-color; transform: translateY(-2px); }
 
+    // Червоно-градієнтна лінія під лінком
     &::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: -0.55rem;
-        width: 100%;
-        height: 3px;
-        border-radius: 999px;
-        background: linear-gradient(90deg, variables.$accent-color 20%, rgba(variables.$accent-color, 0.4));
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform variables.$transition-base;
+      content: ''; position: absolute; left: 0; bottom: -.55rem; width: 100%; height: 3px; border-radius: 999px;
+      background: linear-gradient(90deg, $accent-color 20%, rgba($accent-color, .4));
+      transform: scaleX(0); transform-origin: left; transition: transform $transition-base;
     }
+    &:hover::after { transform: scaleX(1); }
+  }
 
-    &:hover::after {
-        transform: scaleX(1);
-    }
-}
+  // Активне посилання (підкреслене постійно)
+  &__link--active { color: $title-color; &::after { transform: scaleX(1); } }
 
-.header__link--active {
-    color: variables.$title-color;
+  // Контейнер дій (кнопок) справа
+  &__actions { grid-area: actions; @extend %row-grid; gap: 1rem; }
 
-    &::after {
-        transform: scaleX(1);
-    }
-}
-
-.header__actions {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.header__action {
+  // Універсальний стиль кнопок у шапці
+  &__action {
     @include button;
-    padding: variables.$spacing-sm * 1.7 variables.$spacing-lg;
-    font-size: 0.9rem;
-    border-radius: 999px;
-}
+    padding: ($spacing-sm * 1.7) $spacing-lg;
+    font-size: .9rem; border-radius: 999px;
 
-.header__action--ghost {
-    background: rgba(variables.$accent-color, 0.12);
-    border: 1px solid rgba(variables.$accent-color, 0.18);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-    color: variables.$title-color;
+    // Прозорий варіант кнопки (ghost)
+    &--ghost {
+      background: rgba($accent-color, .12);
+      border: 1px solid rgba($accent-color, .18);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+      color: $title-color;
 
-    &:hover {
-        border-color: rgba(variables.$accent-color, 0.36);
-        background: rgba(variables.$accent-color, 0.18);
+      // Більш яскравий фон при наведенні
+      &:hover { border-color: rgba($accent-color, .36); background: rgba($accent-color, .18); }
     }
+  }
 }
 
+// Мобільна адаптація макету у шапці
 @include mobile {
-    .header__inner {
-        flex-wrap: wrap;
-        padding: 1.1rem;
-        border-radius: clamp(1.4rem, 6vw, 2rem);
+  .header {
+    // Стекуємо блоки вертикально
+    &__inner {
+      grid-template-columns: 1fr;
+      grid-template-areas: "brand" "nav" "actions";
+      padding: 1.1rem; border-radius: clamp(1.4rem, 6vw, 2rem); row-gap: 1rem;
     }
 
-    .header__nav {
-        width: 100%;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 1rem;
+    // Меню в 2 колонки на мобільному
+    &__nav,
+    &__actions {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: 100%; gap: 1rem;
     }
 
-    .header__actions {
-        width: 100%;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    }
-
-    .header__action,
-    .header__action--ghost {
-        flex: 1 1 calc(50% - 0.5rem);
-    }
+    // Кнопки розтягуються на всю ширину
+    &__action,
+    &__action--ghost { width: 100%; }
+  }
 }
