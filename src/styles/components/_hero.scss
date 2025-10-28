@@ -1,7 +1,7 @@
 @use '../base/variables' as v;
 @use '../base/mixins' as *;
 .main{
-  padding: 30px 30px;
+  padding: 10px 10px;
 }
 .hero {
   // локальные шорткаты
@@ -9,7 +9,7 @@
   $tr:   v.$transition-base;
 
   position: relative;
-  padding: $padY 0 clamp(3rem, 8vw, 6rem);
+  padding: 10px 0;
   isolation: isolate;
 
   // placeholders для повторяющихся паттернов
