@@ -1,2 +1,3 @@
-@use '../base/variables' as variables;
-@use '../base/mixins' as *;
+@forward '../components/hero';
+@forward '../components/zone';
+@forward '../components/signal';

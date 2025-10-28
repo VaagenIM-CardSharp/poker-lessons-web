@@ -1,12 +1,10 @@
 @use '../base/variables' as variables;
 
-.main__content {
-    padding: variables.$spacing-lg 0;
-}
 
 section {
-    margin: variables.$spacing-lg * 2 0;
-    padding: variables.$spacing-lg 0;
+    margin: clamp(4rem, 8vw, 6.5rem) 0;
+    position: relative;
+    z-index: 1;
 
     &:first-child {
         margin-top: 0;
@@ -18,11 +16,10 @@ section {
 }
 
 // Section styles
-.flip-cards,
-.lessons,
-.subscribe {
-    min-height: 400px;
-    animation: fadeIn 0.8s ease-out;
+.hero,
+.zone,
+.signal {
+    animation: fadeIn 0.8s ease-out backwards;
 }
 
 // Utility spacing classes

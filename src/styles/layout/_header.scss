@@ -1,1 +1,136 @@
 @use '../base/variables' as variables;
+@use '../base/mixins' as *;
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 10px;
+    background: variables.$glass-bg;
+    backdrop-filter: blur(22px);
+    border-bottom: 1px solid variables.$glass-border;
+}
+
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.header__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    color: variables.$title-color;
+    font-weight: 600;
+    font-family: variables.$font-Title;
+    letter-spacing: 0.02em;
+}
+
+.header__symbol {
+    width: 38px;
+    height: 38px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, variables.$accent-color, variables.$accent-secondary);
+    box-shadow: variables.$shadow-symbol;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: variables.$symbol-text;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.2rem, 3vw, 2rem);
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.header__link {
+    color: variables.$muted-color;
+    position: relative;
+    transition: color variables.$transition-base, transform variables.$transition-base;
+
+    &:hover {
+        color: variables.$title-color;
+        transform: translateY(-2px);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -0.4rem;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, variables.$accent-color, rgba(variables.$accent-color, 0));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform variables.$transition-base;
+    }
+
+    &:hover::after {
+        transform: scaleX(1);
+    }
+}
+
+.header__link--active {
+    color: variables.$title-color;
+
+    &::after {
+        transform: scaleX(1);
+    }
+}
+
+.header__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header__action {
+    @include button;
+    padding: variables.$spacing-sm * 2 variables.$spacing-lg * 1.1;
+    font-size: 0.9rem;
+}
+
+.header__action--ghost {
+    background: transparent;
+    border: 1px solid variables.$glass-border;
+    box-shadow: none;
+    color: variables.$title-color;
+
+    &:hover {
+        border-color: variables.$accent-color;
+    }
+}
+
+@include mobile {
+    .header__inner {
+        flex-wrap: wrap;
+    }
+
+    .header__nav {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .header__actions {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .header__action,
+    .header__action--ghost {
+        flex: 1 1 calc(50% - 0.5rem);
+    }
+}

@@ -1,17 +1,20 @@
-@use 'base/_variables' as variables;
-@use 'base/_mixins' as mixins;
-@use 'base/_globals' as globals;
-@use 'base/_typography' as typography;
-@use 'base/_animations' as animations;
+@use './base/_variables' as *;
+@use './base/_mixins' as *;
+@use './base/_globals' as *;
+@use './base/_typography' as *;
+@use './base/_animations' as *;
 
 // components
-@use 'components/_cards' as *;
+@use './components/_cards' as *;
+@use './components/_hero' as *;
+@use './components/_zone' as *;
+@use './components/_signal' as *;
 
 // layout
-@use 'layout/_header' as *;
-@use 'layout/_footer' as *;
-@use 'layout/_grid' as *;
-@use 'layout/_layout' as *;
+@use './layout/_header' as *;
+@use './layout/_footer' as *;
+@use './layout/_grid' as *;
+@use './layout/_layout' as *;
 
 // pages
-@use 'pages/_home' as *;
+@use './pages/_home' as *;

@@ -1,53 +1,353 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    
+    <!-- Viewport and SEO Meta Tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Master poker with Card Sharp - Expert lessons, strategies, and tips to improve your game." />
-    <meta name="keywords" content="poker, poker lessons, card games, poker strategy, poker tips" />
-    <meta name="author" content="Card Sharp" />
-    <title>Card Sharp - Master the Art of Poker</title>
+    <meta name="description" content="Card Sharp Zone - Master the art of poker with professional lessons, strategies, and expert guidance to elevate your game." />
+    <meta name="keywords" content="poker, poker lessons, Texas Hold'em, poker strategy, poker training, Card Sharp Zone, poker tips" />
+    <meta name="author" content="Card Sharp Zone" />
+    <title>Card Sharp Zone - Master Poker Skills</title>
   </head>
   <body class="page">
-    <!-- Header Section -->
-    <header class="header">
-      <div class="header__logo"></div>
-      <nav class="header__nav">
-        <a href="/">Home</a>
-        <a href="#">Lessons</a>
-        <a href="#">Subscribe</a>
-      </nav>
-    </header>
-    <!-- Main Content Section -->
-
-    <main class="main">
-      <div class="container">
-        <div class="main__content">
-
-    <!-- Flip Cards Section -->      
-          <section 
-          class="flip-cards"
-          id="flip-cards">
-          </section>
-
-    <!-- Lessons Section -->
-          <section
-          class="lessons"
-          id="lessons">
-          </section>
-
-    <!-- Subscribe Section -->      
-          <section
-          class="subscribe"
-          id="subscribe">
-        </section>
+    <!-- ============================================ -->
+    <!-- Header Navigation Section -->
+    <!-- ============================================ -->
+    <!-- Header Navigation Section -->
+    <!-- ============================================ -->
+    <header class="header" id="top">
+      <div class="container header__inner">
+        <!-- Brand Logo -->
+        <a class="header__brand" href="#top">
+          <span class="header__symbol">CS</span>
+          Card Sharp Zone
+        </a>
+        
+        <!-- Primary Navigation Menu -->
+        <nav class="header__nav" aria-label="Primary">
+          <a class="header__link header__link--active" href="#flip-cards">Home</a>
+          <a class="header__link" href="#lessons">About Us</a>
+          <a class="header__link" href="#flip-cards">Lessons</a>
+          <a class="header__link" href="#subscribe">Contact</a>
+        </nav>
+        
+        <!-- Header Action Buttons -->
+        <div class="header__actions">
+          <button class="header__action header__action--ghost" type="button">Sign In</button>
+          <button class="header__action" type="button">Start Learning</button>
         </div>
       </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- Main Content Area -->
+    <!-- ============================================ -->
+
+    <main class="main">
+      <div class="main__content">
+        
+        <!-- ============================================ -->
+        <!-- Hero Section with Interactive Cards -->
+        <!-- ============================================ -->
+        <section class="hero" id="flip-cards">
+          <div class="hero__backdrop"></div>
+          <div class="container hero__inner">
+            
+            <!-- Hero Text Content -->
+            <div class="hero__content">
+              <!-- Badge with indicator -->
+              <a class="hero__badge" href="#">
+                <span class="hero__badge-dot"></span>
+                Poker Lessons
+              </a>
+              <h1 class="hero__title">Master Poker Strategy</h1>
+              <h2 class="hero__subtitle">Your Winning Hand</h2>
+              <p class="hero__description">
+                All poker strategies in one place. Learn from professional players, 
+                master advanced techniques, get expert analysis, and turn your game around.
+              </p>
+              <div class="hero__actions">
+                <button class="hero__button hero__button--ghost" type="button">Sign In</button>
+                <button class="hero__button hero__button--primary" type="button">Start Learning</button>
+              </div>
+            </div>
+            <div class="hero__showcase">
+              <!-- Previous Card Navigation Button -->
+              <button class="hero__nav hero__nav--prev" type="button" aria-label="Previous showcase">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              
+              <!-- Cards Container -->
+              <div class="hero__cards" data-hero-cards>
+                
+                <!-- Card 1: Bluff Master (Far Left) -->
+                <article
+                  class="hero-card hero-card--far-left"
+                  data-card-index="0"
+                  data-gradient="linear-gradient(155deg, #ffffff 0%, #f5f5f5 45%, #e0e0e0 100%)"
+                  data-glow="rgba(255, 255, 255, 0.4)"
+                  data-accent="#ffffff"
+                  aria-hidden="true"
+                >
+                  <div class="hero-card__overlay"></div>
+                  <div class="hero-card__glyph">♦️</div>
+                  <div class="hero-card__body">
+                    <span class="hero-card__category">Advanced Strategy</span>
+                    <h3 class="hero-card__heading">Bluff Master</h3>
+                    <p class="hero-card__text">Master the art of deception and learn when to bluff for maximum impact.</p>
+                  </div>
+                </article>
+                
+                <!-- Card 2: Position Power (Left) -->
+                <article
+                  class="hero-card hero-card--left"
+                  data-card-index="1"
+                  data-gradient="linear-gradient(160deg, #ff3333 0%, #cc0000 50%, #0a0a0a 100%)"
+                  data-glow="rgba(255, 51, 51, 0.5)"
+                  data-accent="#ff3333"
+                  aria-hidden="true"
+                >
+                  <div class="hero-card__overlay"></div>
+                  <div class="hero-card__glyph">♠️</div>
+                  <div class="hero-card__body">
+                    <span class="hero-card__category">Position Play</span>
+                    <h3 class="hero-card__heading">Position Power</h3>
+                    <p class="hero-card__text">Leverage table position to control the action and maximize your edge.</p>
+                  </div>
+                </article>
+                
+                <!-- Card 3: Hold'em Basics (Center - Active) -->
+                <article
+                  class="hero-card hero-card--center"
+                  data-card-index="2"
+                  data-gradient="linear-gradient(165deg, #ffffff 0%, #f0f0f0 55%, #d5d5d5 100%)"
+                  data-glow="rgba(255, 255, 255, 0.5)"
+                  data-accent="#ffffff"
+                >
+                  <div class="hero-card__overlay"></div>
+                  <div class="hero-card__glyph">♥️</div>
+                  <div class="hero-card__body">
+                    <span class="hero-card__category">Core Fundamentals</span>
+                    <h3 class="hero-card__heading">Hold'em Basics</h3>
+                    <p class="hero-card__text">Build a solid foundation with Texas Hold'em fundamentals and hand rankings.</p>
+                  </div>
+                </article>
+                
+                <!-- Card 4: Tournament Tactics (Right) -->
+                <article
+                  class="hero-card hero-card--right"
+                  data-card-index="3"
+                  data-gradient="linear-gradient(155deg, #1a1a1a 0%, #ff3333 55%, #0a0a0a 100%)"
+                  data-glow="rgba(255, 51, 51, 0.5)"
+                  data-accent="#ff3333"
+                  aria-hidden="true"
+                >
+                  <div class="hero-card__overlay"></div>
+                  <div class="hero-card__glyph">♣️</div>
+                  <div class="hero-card__body">
+                    <span class="hero-card__category">Tournament Play</span>
+                    <h3 class="hero-card__heading">Tournament Tactics</h3>
+                    <p class="hero-card__text">Navigate multi-table tournaments with winning strategies for every stage.</p>
+                  </div>
+                </article>
+                
+                <!-- Card 5: Bankroll Building (Far Right) -->
+                <article
+                  class="hero-card hero-card--far-right"
+                  data-card-index="4"
+                  data-gradient="linear-gradient(150deg, #ffffff 0%, #f8f8f8 55%, #e8e8e8 100%)"
+                  data-glow="rgba(255, 255, 255, 0.4)"
+                  data-accent="#ffffff"
+                  aria-hidden="true"
+                >
+                  <div class="hero-card__overlay"></div>
+                  <div class="hero-card__glyph">♠️</div>
+                  <div class="hero-card__body">
+                    <span class="hero-card__category">Bankroll Management</span>
+                    <h3 class="hero-card__heading">Bankroll Building</h3>
+                    <p class="hero-card__text">Protect your investment with smart bankroll management and risk control.</p>
+                  </div>
+                </article>
+              </div>
+              
+              <!-- Next Card Navigation Button -->
+              <button class="hero__nav hero__nav--next" type="button" aria-label="Next showcase">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              
+              <!-- Meta Information (Avatars and Stats) -->
+              <div class="hero__meta">
+                <!-- User Avatars -->
+                <div class="hero__avatars">
+                  <span class="hero__avatar" style="background:linear-gradient(135deg, #ef4444, #000000)">P</span>
+                  <span class="hero__avatar" style="background:linear-gradient(135deg, #ffffff, #000000)">K</span>
+                  <span class="hero__avatar" style="background:linear-gradient(135deg, #f59e0b, #ef4444)">R</span>
+                </div>
+                
+                <!-- Statistics Display -->
+                <div class="hero__stat">
+                  <span class="hero__stat-value">-2</span>
+                  <span class="hero__stat-label">Players trained</span>
+                </div>
+              </div>
+              
+              <!-- Card Navigation Dots -->
+              <div class="hero__dots" data-hero-dots role="tablist" aria-label="Hero cards navigation">
+                <button class="hero__dot" type="button" data-index="0" role="tab" aria-label="Show Bluff Master">
+                  
+                </button>
+                <button class="hero__dot" type="button" data-index="1" role="tab" aria-label="Show Position Power">
+                  
+                </button>
+                <button class="hero__dot hero__dot--active" type="button" data-index="2" role="tab" aria-selected="true" aria-label="Show Hold'em Basics">
+                  
+                </button>
+                <button class="hero__dot" type="button" data-index="3" role="tab" aria-label="Show Tournament Tactics">
+                  
+                </button>
+                <button class="hero__dot" type="button" data-index="4" role="tab" aria-label="Show Bankroll Building">
+                  
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- Lessons Zone Section -->
+        <!-- ============================================ -->
+        <section class="zone" id="lessons">
+          <div class="zone__inner container">
+            
+            <!-- Section Header -->
+            <header class="zone__header">
+              <span class="zone__eyebrow">Master Your Game</span>
+              <h2 class="zone__title">Learn From The Pros</h2>
+              <p class="zone__subtitle">
+                From beginner basics to advanced tournament play, we provide comprehensive lessons to keep you ahead of the competition.
+              </p>
+            </header>
+            
+            <!-- Feature Cards Grid -->
+            <div class="zone__grid">
+              <!-- Feature Card 1: Pro Player Sessions -->
+              <article class="zone-card">
+                <span class="zone-card__icon">PR</span>
+                <h3 class="zone-card__title">Pro Player Sessions</h3>
+                <p class="zone-card__description">Weekly deep dives with professional poker players sharing their winning strategies.</p>
+                <button class="zone-card__link" type="button">
+                  Explore
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </article>
+              
+              <!-- Feature Card 2: Hand Analysis -->
+              <article class="zone-card">
+                <span class="zone-card__icon">HA</span>
+                <h3 class="zone-card__title">Hand Analysis</h3>
+                <p class="zone-card__description">Review and analyze hands from real games with expert breakdowns and strategy tips.</p>
+                <button class="zone-card__link" type="button">
+                  Explore
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </article>
+              
+              <!-- Feature Card 3: Strategy & Tactics -->
+              <article class="zone-card">
+                <span class="zone-card__icon">ST</span>
+                <h3 class="zone-card__title">Strategy & Tactics</h3>
+                <p class="zone-card__description">Build your winning game with guided lessons from tournament champions.</p>
+                <button class="zone-card__link" type="button">
+                  Explore
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </article>
+            </div>
+            
+            <!-- Call-to-Action Banner -->
+            <div class="zone__cta">
+              <div class="zone__cta-copy">
+                <h3 class="zone__cta-title">Live Training Sessions</h3>
+                <p class="zone__cta-text">
+                  Join weekly live coaching with professional players, analyze hands in real-time, and get answers to your poker questions.
+                </p>
+              </div>
+              <button class="zone__cta-button" type="button">Reserve Your Seat</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- Newsletter Subscription Section -->
+        <!-- ============================================ -->
+        <section class="signal" id="subscribe">
+          <div class="signal__inner container">
+            <!-- Background Decoration -->
+            <div class="signal__halo"></div>
+            
+            <!-- Section Content -->
+            <div class="signal__content">
+              <span class="signal__eyebrow">Stay Sharp</span>
+              <h2 class="signal__title">Level Up Your Game. Master The Table.</h2>
+              <p class="signal__description">
+                Subscribe for exclusive lessons, tournament tips, and the latest poker strategies from pros.
+              </p>
+            </div>
+            
+            <!-- Subscription Form -->
+            <form class="signal__form" novalidate>
+              <!-- Email Input Field -->
+              <label class="signal__field" for="signal-email">
+                <span class="visually-hidden">Email address</span>
+                <input
+                  id="signal-email"
+                  class="signal__input"
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  autocomplete="email"
+                  required
+                />
+              </label>
+              <!-- Submit Button -->
+              <button class="signal__submit" type="submit">Get Updates</button>
+            </form>
+          </div>
+        </section>
+      </div>
     </main>
+    
+    <!-- ============================================ -->
+    <!-- Footer Section -->
+    <!-- ============================================ -->
     <footer class="footer">
-      <p>&copy; 2025 Card Sharp. All rights reserved.</p>
+      <div class="container">
+        <p>&copy; 2025 Card Sharp Zone. All rights reserved.</p>
+      </div>
     </footer>
+    
+    <!-- Main JavaScript Entry Point -->
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
