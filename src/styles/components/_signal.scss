@@ -62,6 +62,7 @@
   // Обгортка для інпуту
   &__field {
     flex: 1;
+    margin-top: -28px;
   }
 
   // Текстове поле
@@ -70,7 +71,7 @@
     padding: ($spacing-md * 1.2) ($spacing-lg * 1.4);
     border-radius: $radius-lg;
     border: 1px solid $glass-border;
-    background: $surface-color;
+    background: $zone-border;
     color: $title-color;
     font-size: 1rem;
     transition: border-color $transition-base, box-shadow $transition-base;
