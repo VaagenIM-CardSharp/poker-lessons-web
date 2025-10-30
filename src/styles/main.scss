@@ -5,10 +5,10 @@
 @use './base/_animations' as *;
 
 // components
-@use './components/_cards' as *;
-@use './components/_hero' as *;
-@use './components/_zone' as *;
-@use './components/_signal' as *;
+@use './home/_cards' as *;
+@use './home/_hero' as *;
+@use './home/_zone' as *;
+@use './home/_signal' as *;
 
 // layout
 @use './layout/_header' as *;
@@ -18,3 +18,4 @@
 
 // pages
 @use './pages/_home' as *;
+@use './pages/_login' as *;

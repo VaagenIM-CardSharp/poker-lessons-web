@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Sign in to Card Sharp Zone and continue mastering the art of poker with tailored lessons and coaching."
+    />
+    <meta name="keywords" content="poker login, card sharp zone, poker lessons, poker coaching" />
+    <meta name="author" content="Card Sharp Zone" />
+    <title>Card Sharp Zone &mdash; Sign In</title>
+  </head>
+  <body class="page page--login">
+    <header class="header" id="top">
+      <div class="container header__inner">
+        <a class="header__brand" href="/index.html">
+          <span class="header__symbol">CS</span>
+          Card Sharp Zone
+        </a>
+        <nav class="header__nav" aria-label="Primary">
+          <a class="header__link" href="/index.html#flip-cards">Home</a>
+          <a class="header__link" href="/index.html#lessons">About Us</a>
+          <a class="header__link" href="/index.html#flip-cards">Lessons</a>
+          <a class="header__link" href="/index.html#subscribe">Contact</a>
+        </nav>
+        <div class="header__actions">
+          <a class="header__action header__action--ghost" href="/index.html">Back to Home</a>
+          <a class="header__action" href="/index.html#subscribe">Start Learning</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="login" aria-labelledby="login-heading">
+      <div class="login__container">
+        <section class="login__panel">
+          <div class="login__welcome">
+            <span class="login__badge">Members</span>
+            <h1 class="login__title" id="login-heading">Welcome back</h1>
+          </div>
+
+          <form class="login__form" action="#" method="post" novalidate>
+            <label class="login__field" for="login-email">
+              <span class="login__label">Email address</span>
+              <input
+                class="login__input"
+                type="email"
+                name="email"
+                id="login-email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              />
+            </label>
+
+            <label class="login__field" for="login-password">
+              <span class="login__label">Password</span>
+              <input
+                class="login__input"
+                type="password"
+                name="password"
+                id="login-password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
+              />
+            </label>
+
+            <div class="login__meta">
+              <label class="login__remember">
+                <input class="login__checkbox" type="checkbox" name="remember" id="login-remember" />
+                <span>Remember me</span>
+              </label>
+              <a class="login__forgot" href="#">Forgot password?</a>
+            </div>
+
+            <button class="login__submit" type="submit">Sign In</button>
+          </form>
+
+          <p class="login__signup">
+            New to Card Sharp Zone?
+            <a href="/index.html#subscribe">Create a free account</a>
+          </p>
+        </section>
+
+        <aside class="login__spotlight" aria-label="Member highlight">
+          <div class="login__spotlight-inner">
+            <span class="login__spotlight-badge">Elite Access</span>
+            <h2 class="login__spotlight-title">Sharpen Your Edge</h2>
+            <p class="login__spotlight-text">
+              Unlock live coaching, pro-level hand breakdowns, and exclusive tournaments tailored to your play style.
+            </p>
+            <ul class="login__benefits">
+              <li>Weekly strategy drops from top pros</li>
+              <li>Interactive hand labs with real scenarios</li>
+              <li>Progress tracking to measure improvements</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 Card Sharp Zone. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+
