@@ -27,13 +27,19 @@
     <header class="header" id="top">
       <div class="container header__inner">
         <!-- Brand Logo -->
-        <a class="header__brand" href="#top">
+        <a
+          class="header__brand"
+          href="#top"
+          data-header-toggle
+          aria-controls="header-nav header-actions"
+          aria-expanded="false"
+        >
           <span class="header__symbol">CS</span>
           Card Sharp Zone
         </a>
         
         <!-- Primary Navigation Menu -->
-        <nav class="header__nav" aria-label="Primary">
+        <nav class="header__nav" id="header-nav" aria-label="Primary" data-header-section>
           <a class="header__link header__link--active" href="#flip-cards">Home</a>
           <a class="header__link" href="#lessons">About Us</a>
           <a class="header__link" href="#flip-cards">Lessons</a>
@@ -41,7 +47,7 @@
         </nav>
         
         <!-- Header Action Buttons --> 
-        <div class="header__actions">
+        <div class="header__actions" id="header-actions" data-header-section>
           <a class="header__action header__action--ghost" href="/login.html">Sign In</a>
           <button class="header__action" type="button">Start Learning</button>
         </div>

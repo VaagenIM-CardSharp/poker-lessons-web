@@ -1,55 +1,55 @@
 @use '../base/variables' as *;
 @use '../base/mixins' as *;
 
-// Плейсхолдер для горизонтального рядка на grid
-%row-grid { display: grid; grid-auto-flow: column; align-items: center; }
+%row-grid {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+}
 
-// Стиль "шапки" сайту (завжди прикріплена до верху)
 .header {
   position: sticky;
   top: 0;
   z-index: 10;
   padding: 18px 24px;
 
-  // Внутрішня капсула
   &__inner {
     position: relative;
     display: grid;
     grid-template-columns: auto 1fr auto;
-    grid-template-areas: "brand nav actions";
+    grid-template-areas: 'brand nav actions';
     align-items: center;
     gap: 2rem;
     border-radius: 999px;
     padding: 12px 22px;
-    background: linear-gradient(135deg, rgba(20,10,10,.62), rgba(12,4,4,.55) 55%, rgba(8,3,3,.6));
-    border: 1px solid rgba($accent-color, .12);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 18px 45px rgba($accent-color, .18);
+    background: linear-gradient(135deg, rgba(20, 10, 10, 0.62), rgba(12, 4, 4, 0.55) 55%, rgba(8, 3, 3, 0.6));
+    border: 1px solid rgba($accent-color, 0.12);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 18px 45px rgba($accent-color, 0.18);
     backdrop-filter: blur(18px);
     overflow: hidden;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      background: radial-gradient(120% 120% at 0% 0%, rgba($accent-color, .22), transparent 55%);
-      opacity: .45;
+      background: radial-gradient(120% 120% at 0% 0%, rgba($accent-color, 0.22), transparent 55%);
+      opacity: 0.45;
       pointer-events: none;
       z-index: -1;
     }
   }
 
-  // Бренд
   &__brand {
     grid-area: brand;
     display: inline-flex;
     align-items: center;
-    gap: .9rem;
+    gap: 0.9rem;
     color: $title-color;
     font: 600 1rem $font-Title;
+    transition: color $transition-base;
   }
 
-  // Символ
   &__symbol {
     width: 38px;
     height: 38px;
@@ -64,22 +64,20 @@
     font-size: 1rem;
   }
 
-  // Навігація
   &__nav {
     grid-area: nav;
     @extend %row-grid;
     justify-content: end;
     gap: 1.8rem;
-    font-size: .9rem;
-    letter-spacing: .08em;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
-  // Лінк
   &__link {
     color: $muted-color;
     position: relative;
-    padding: .35rem 0;
+    padding: 0.35rem 0;
     transition: color $transition-base, transform $transition-base;
 
     &:hover {
@@ -88,82 +86,140 @@
     }
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
-      bottom: -.55rem;
+      bottom: -0.55rem;
       width: 100%;
       height: 3px;
       border-radius: 999px;
-      background: linear-gradient(90deg, $accent-color 20%, rgba($accent-color,.4));
+      background: linear-gradient(90deg, $accent-color 20%, rgba($accent-color, 0.4));
       transform: scaleX(0);
       transform-origin: left;
       transition: transform $transition-base;
     }
-    &:hover::after { transform: scaleX(1); }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
   }
 
-  // Активний
   &__link--active {
     color: $title-color;
-    &::after { transform: scaleX(1); }
+
+    &::after {
+      transform: scaleX(1);
+    }
   }
 
-  // Кнопки справа
   &__actions {
     grid-area: actions;
     @extend %row-grid;
     gap: 1rem;
   }
 
-  // Кнопка
   &__action {
     @include button;
     padding: ($spacing-sm * 1.7) $spacing-lg;
-    font-size: .9rem;
+    font-size: 0.9rem;
     border-radius: 999px;
 
     &--ghost {
-      background: rgba($accent-color,.12);
-      border: 1px solid rgba($accent-color,.18);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+      background: rgba($accent-color, 0.12);
+      border: 1px solid rgba($accent-color, 0.18);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
       color: $title-color;
 
       &:hover {
-        border-color: rgba($accent-color,.36);
-        background: rgba($accent-color,.18);
+        border-color: rgba($accent-color, 0.36);
+        background: rgba($accent-color, 0.18);
       }
     }
   }
 }
 
-// Мобільна адаптація
 @include mobile {
   .header {
-
     &__inner {
       grid-template-columns: 1fr;
       grid-template-areas:
-        "brand"
-        "nav"
-        "actions";
+        'brand'
+        'nav'
+        'actions';
       border-radius: 22px;
       padding: 18px;
-      row-gap: 1rem;
+      row-gap: 0;
     }
 
-    // 2 колонки
+    &__brand {
+      justify-content: space-between;
+      width: 100%;
+      cursor: pointer;
+      user-select: none;
+
+      &::after {
+        content: '';
+        width: 12px;
+        height: 12px;
+        border-right: 2px solid rgba($title-color, 0.8);
+        border-bottom: 2px solid rgba($title-color, 0.8);
+        transform: rotate(45deg);
+        transition: transform $transition-base;
+      }
+    }
+
     &__nav,
     &__actions {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
       width: 100%;
       gap: 1rem;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-12px);
+      padding-top: 0;
+      transition:
+        max-height $transition-base,
+        opacity $transition-base,
+        transform $transition-base,
+        padding $transition-base;
     }
 
-    // Повна ширина кнопок
+    &__nav {
+      grid-auto-flow: row;
+      justify-items: start;
+      text-align: left;
+
+      .header__link {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    &__actions {
+      grid-auto-flow: row;
+    }
+
     &__action,
     &__action--ghost {
       width: 100%;
     }
+
+    &--menu-open {
+      .header__nav,
+      .header__actions {
+        max-height: 480px;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+        padding-top: 1rem;
+      }
+
+      .header__brand::after {
+        transform: rotate(-135deg);
+      }
+    }
   }
 }
+

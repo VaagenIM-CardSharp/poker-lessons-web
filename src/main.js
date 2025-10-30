@@ -147,7 +147,82 @@ function initHeroOrbit(root = document.querySelector('.hero')) {
     start();
 }
 
+function initHeaderToggle(root = document.querySelector('.header')) {
+    if (!root) return;
+
+    const toggle = root.querySelector('[data-header-toggle]');
+    const sections = Array.from(root.querySelectorAll('[data-header-section]'));
+    if (!toggle || !sections.length) return;
+
+    let isOpen = false;
+
+    const isMobile = () => MOBILE_QUERY.matches;
+
+    const applyState = () => {
+        root.classList.toggle('header--menu-open', isMobile() && isOpen);
+        toggle.setAttribute('aria-expanded', String(isMobile() && isOpen));
+    };
+
+    const close = () => {
+        if (!isOpen) return;
+        isOpen = false;
+        applyState();
+    };
+
+    const handleToggle = (event) => {
+        if (!isMobile()) return;
+        event.preventDefault();
+        isOpen = !isOpen;
+        applyState();
+    };
+
+    const handleDocumentClick = (event) => {
+        if (!isMobile() || !isOpen) return;
+        if (root.contains(event.target)) return;
+        close();
+    };
+
+    const handleKeydown = (event) => {
+        if (!isMobile() || !isOpen) return;
+        if (event.key === 'Escape') {
+            close();
+            toggle.focus();
+        }
+    };
+
+    const handleBreakpointChange = () => {
+        if (!isMobile()) {
+            isOpen = false;
+        }
+        applyState();
+    };
+
+    sections.forEach((section) => {
+        section.addEventListener('click', (event) => {
+            if (!isMobile() || !isOpen) return;
+            if (event.target.closest('a, button')) {
+                close();
+            }
+        });
+    });
+
+    toggle.setAttribute('aria-haspopup', 'true');
+
+    toggle.addEventListener('click', handleToggle);
+    document.addEventListener('click', handleDocumentClick);
+    document.addEventListener('keydown', handleKeydown);
+
+    if (typeof MOBILE_QUERY.addEventListener === 'function') {
+        MOBILE_QUERY.addEventListener('change', handleBreakpointChange);
+    } else if (typeof MOBILE_QUERY.addListener === 'function') {
+        MOBILE_QUERY.addListener(handleBreakpointChange);
+    }
+
+    applyState();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initHeroOrbit();
+    initHeaderToggle();
     console.log('Card Sharp Zone hero orbit ready');
 });

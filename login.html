@@ -21,17 +21,23 @@
   <body class="page page--login">
     <header class="header" id="top">
       <div class="container header__inner">
-        <a class="header__brand" href="/index.html">
+        <a
+          class="header__brand"
+          href="/index.html"
+          data-header-toggle
+          aria-controls="header-nav header-actions"
+          aria-expanded="false"
+        >
           <span class="header__symbol">CS</span>
           Card Sharp Zone
         </a>
-        <nav class="header__nav" aria-label="Primary">
+        <nav class="header__nav" id="header-nav" aria-label="Primary" data-header-section>
           <a class="header__link" href="/index.html#flip-cards">Home</a>
           <a class="header__link" href="/index.html#lessons">About Us</a>
           <a class="header__link" href="/index.html#flip-cards">Lessons</a>
           <a class="header__link" href="/index.html#subscribe">Contact</a>
         </nav>
-        <div class="header__actions">
+        <div class="header__actions" id="header-actions" data-header-section>
           <a class="header__action header__action--ghost" href="/index.html">Back to Home</a>
           <a class="header__action" href="/index.html#subscribe">Start Learning</a>
         </div>

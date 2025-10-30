@@ -87,6 +87,10 @@
   }
 
   @include mobile {
+    &__inner {
+      margin-top: 1100px;
+    }
+
     &__grid {
       grid-template-columns: 1fr;
     }
