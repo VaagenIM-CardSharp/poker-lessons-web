@@ -1,0 +1,247 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.hero-card {
+  // цвета и свечения
+  --card-accent: #{$accent-color};
+  --card-gradient: linear-gradient(
+    150deg,
+    rgba($accent-color, 0.75) 0%,
+    rgba($accent-secondary, 0.48) 40%,
+    rgba(12, 4, 4, 0.95) 100%
+  );
+  --card-glow: rgba(#{$accent-color}, .38);
+
+  // по центру орбиты
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  // Размеры карточки
+  width: 240px;
+  height: 350px;
+  padding: 28px;
+
+  // Баз оформление
+  border-radius: 26px;
+  border: 1px solid rgba($accent-color, .12);
+  background: var(--card-gradient);
+  color: $title-color;
+  overflow: hidden;
+  pointer-events: auto;
+  isolation: isolate;
+
+  // Разметка
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  // Трансформации, управляемые JS
+  transform: translate3d(
+      calc(-50% + var(--translate-x, 0px)),
+      calc(-50% + var(--translate-y, 0px)),
+      var(--translate-z, 0px)
+    )
+    rotate(var(--rotate-z, 0deg))
+    rotateY(var(--rotate-y, 0deg))
+    scale(var(--scale, 1));
+  transform-origin: center;
+  transform-style: preserve-3d;
+
+  // Оптические свойства из JS
+  opacity: var(--card-opacity, 0);
+  filter: blur(var(--card-blur, 0px));
+  z-index: var(--card-layer, 1);
+
+  // Тени и свечение
+  box-shadow:
+    $shadow-lg,
+    0 16px 45px rgba(10,5,5,.65),
+    0 0 38px var(--card-glow);
+
+  // Стеклянный эффект
+  backdrop-filter: blur(22px);
+
+  // Плавные изменения при обновлении значений
+  transition:
+    opacity .45s ease,
+    box-shadow .45s ease,
+    border-color .45s ease,
+    filter .45s ease;
+
+  // Нижняя подсветка
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -55% -45% auto -45%;
+    height: 70%;
+    opacity: .85;
+    filter: blur(42px);
+    pointer-events: none;
+    z-index: -2;
+    background:
+      radial-gradient(ellipse at center, rgba($accent-secondary,.38), transparent 68%),
+      radial-gradient(circle at 50% 85%, rgba($accent-color,.55), transparent 65%);
+  }
+
+  // Блик стекла
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 12% 10% 24%;
+    border-radius: 20px;
+    opacity: .65;
+    z-index: 1;
+    transition: opacity .5s ease;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    background: linear-gradient(
+      130deg,
+      rgba(255,255,255,.18) 8%,
+      rgba(255,255,255,.04) 55%,
+      transparent 90%
+    );
+  }
+
+  // Эффект при наведении
+  &:hover {
+    border-color: rgba($accent-color,.4);
+    box-shadow:
+      $shadow-lg,
+      0 38px 95px rgba($accent-color,.35),
+      0 0 65px rgba($accent-secondary,.28),
+      0 0 48px rgba($accent-tertiary,.45);
+
+    &::after { opacity: .95; }
+  }
+
+  // Внутренние элементы
+  &__overlay {
+    position: absolute;
+    inset: -35%;
+    opacity: .6;
+    filter: blur(38px);
+    pointer-events: none;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 20% 25%, rgba(255,255,255,.18), transparent 55%),
+      radial-gradient(circle at 78% 70%, rgba($accent-tertiary,.45), transparent 63%);
+  }
+
+  &__glyph {
+    position: absolute;
+    top: 22px;
+    right: 24px;
+    font-size: 2.2rem;
+    opacity: .8;
+  }
+
+  &__body {
+    position: relative;
+  }
+
+  &__category {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .24em;
+    color: $text-color;
+    padding: .35rem .8rem;
+    margin-bottom: .9rem;
+    border-radius: 999px;
+    background: rgba($accent-color,.14);
+    box-shadow:
+      inset 0 0 0 1px rgba($accent-color,.18),
+      0 8px 20px rgba($accent-color,.18);
+  }
+
+  &__heading {
+    font-size: 1.4rem;
+    margin-bottom: .6rem;
+    background: linear-gradient(
+      120deg,
+      rgba(255,255,255,.95),
+      rgba($accent-secondary,.75)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &__text {
+    font-size: .95rem;
+    margin: 0;
+    color: $muted-color;
+  }
+
+  // Цветовые варианты
+  &--secondary {
+    --card-gradient: linear-gradient(
+      150deg,
+      rgba($accent-color,.78) 0%,
+      rgba($accent-secondary,.55) 45%,
+      rgba(12,5,5,.94) 100%
+    );
+    --card-glow: rgba($accent-secondary,.35);
+  }
+
+  &--tertiary {
+    --card-gradient: linear-gradient(
+      150deg,
+      rgba($accent-tertiary,.65) 0%,
+      rgba($accent-color,.32) 45%,
+      rgba(12,4,4,.92) 100%
+    );
+    --card-glow: rgba($accent-tertiary,.3);
+  }
+
+  // Состояние активной карточки
+  &--focus {
+    border-color: rgba($accent-color,.4);
+    box-shadow:
+      $shadow-lg,
+      0 0 65px rgba($accent-color,.55),
+      0 42px 120px rgba($accent-color,.4);
+
+    &::before {
+      opacity: .95;
+      filter: blur(48px);
+    }
+
+    &::after {
+      inset: 10% 8% 20%;
+      opacity: .9;
+    }
+  }
+
+  // Размеры для планшетов
+  @include tablet {
+    width: 220px;
+    height: 300px;
+  }
+
+  // Изменения на мобильных
+  @include mobile {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    min-height: 250px;
+    transform: none;
+    opacity: 1;
+    border-radius: 22px;
+    margin: 0;
+    pointer-events: auto;
+
+    &::before {
+      inset: -40% -25% auto -25%;
+      height: 65%;
+    }
+
+    & + & { margin-top: $spacing-lg; }
+
+    &__glyph { font-size: 1.6rem; }
+  }
+}

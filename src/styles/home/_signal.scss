@@ -1,0 +1,122 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+// Секція зі світловим ефектом
+.signal {
+  position: relative;
+
+  // Основний контейнер із градієнтом, склом та grid-розкладкою
+  &__inner {
+    margin-top: 80px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 32px;
+    padding: 70px;
+    background: $glass-bg;
+    border: 1px solid $border-color;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 36px;
+    align-items: center;
+  }
+
+  // Світлове гало під контентом
+  &__halo {
+    position: absolute;
+    inset: 0;
+    background: $zone-halo;
+    filter: blur(50px);
+    opacity: .6;
+    pointer-events: none;
+  }
+
+  // Малий текст над заголовком
+  &__eyebrow {
+    display: inline-flex;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    font-size: .78rem;
+    color: $muted-color;
+    margin-bottom: 14px;
+  }
+
+  // Заголовок
+  &__title {
+    font-size: 2.6rem;
+    margin-bottom: 16px;
+  }
+
+  // Короткий опис
+  &__description {
+    max-width: 480px;
+    margin: 0;
+  }
+
+  // Форма (поле + кнопка)
+  &__form {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  // Обгортка для інпуту
+  &__field {
+    flex: 1;
+    margin-top: -28px;
+  }
+
+  // Текстове поле
+  &__input {
+    width: 100%;
+    padding: ($spacing-md * 1.2) ($spacing-lg * 1.4);
+    border-radius: $radius-lg;
+    border: 1px solid $glass-border;
+    background: $zone-border;
+    color: $title-color;
+    font-size: 1rem;
+    transition: border-color $transition-base, box-shadow $transition-base;
+
+    &::placeholder {
+      color: $muted-color;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $accent-color;
+      box-shadow: 0 0 0 4px rgba(255, 51, 51, .15);
+    }
+  }
+
+  // Кнопка надсилання
+  &__submit {
+    @include button;
+    padding: ($spacing-md * 1.1) ($spacing-lg * 1.7);
+  }
+
+  // Планшет: один стовпчик
+  @include tablet {
+    &__inner {
+      grid-template-columns: 1fr;
+      text-align: left;
+    }
+  }
+
+  // Мобільна адаптація: форма в стовпчик
+  @include mobile {
+    &__inner {
+      grid-template-columns: 1fr;
+    }
+
+    &__form {
+      width: 100%;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
+    }
+
+    &__submit {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}

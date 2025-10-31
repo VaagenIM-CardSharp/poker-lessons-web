@@ -1,43 +1,19 @@
 @use '../base/variables' as variables;
 
-.main__content {
-    padding: variables.$spacing-lg 0;
+.page { display: grid; row-gap:2rem; }
+
+.page > section {
+  /* без внешних margin */
+  /* position/z-index только при необходимости */
 }
 
-section {
-    margin: variables.$spacing-lg * 2 0;
-    padding: variables.$spacing-lg 0;
+.hero, .zone, .signal { animation: fadeIn 0.8s ease-out backwards; }
 
-    &:first-child {
-        margin-top: 0;
-    }
-
-    &:last-child {
-        margin-bottom: 0;
-    }
-}
-
-// Section styles
-.flip-cards,
-.lessons,
-.subscribe {
-    min-height: 400px;
-    animation: fadeIn 0.8s ease-out;
-}
-
-// Utility spacing classes
-.mt-sm { margin-top: variables.$spacing-sm; }
-.mt-md { margin-top: variables.$spacing-md; }
-.mt-lg { margin-top: variables.$spacing-lg; }
-
-.mb-sm { margin-bottom: variables.$spacing-sm; }
-.mb-md { margin-bottom: variables.$spacing-md; }
-.mb-lg { margin-bottom: variables.$spacing-lg; }
-
+/* Утилиты для внутренних отступов оставить; margin-утилиты можно удалить */
 .pt-sm { padding-top: variables.$spacing-sm; }
 .pt-md { padding-top: variables.$spacing-md; }
 .pt-lg { padding-top: variables.$spacing-lg; }
-
 .pb-sm { padding-bottom: variables.$spacing-sm; }
 .pb-md { padding-bottom: variables.$spacing-md; }
 .pb-lg { padding-bottom: variables.$spacing-lg; }
+/* .mt-* / .mb-* удалить или не применять к section */

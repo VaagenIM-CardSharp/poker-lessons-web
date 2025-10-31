@@ -1,0 +1,172 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+// Основний блок hero-секції
+.hero {
+  position: relative;
+  padding: 10px 0;
+  isolation: isolate;
+  $tr: $transition-base;
+
+  // Універсальна піл-табличка
+  %pill {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    padding: .55rem 1.1rem;
+    border-radius: 999px;
+    border: 1px solid $border-color;
+    background: $zone-cta-bg;
+    color: $title-color;
+    font: 600 .78rem/1 var(--font, inherit);
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    backdrop-filter: blur(18px);
+    transition: transform $tr;
+  }
+
+  // Внутрішній контейнер секції
+  &__inner {
+    display: grid;
+    place-items: center;
+    gap: 56px;
+    margin: 0 auto;
+    padding: 0 56px;
+    max-width: 1400px;
+    width: 100%;
+  }
+
+  // Контент
+  &__content {
+    max-width: 680px;
+    text-align: center;
+  }
+
+  // Невелика бейдж-мітка
+  &__badge {
+    @extend %pill;
+    margin-bottom: 24px;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: $accent-color;
+      box-shadow: $shadow-symbol;
+    }
+  }
+
+  // Заголовок
+  &__title {
+    font-size: 4rem;
+    line-height: 1.05;
+  }
+
+  // Підзаголовок з градієнтом
+  &__subtitle {
+    font-size: 2.4rem;
+    background: linear-gradient(90deg, $accent-color 10%, $accent-secondary 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 24px;
+  }
+
+  // Короткий опис
+  &__description {
+    max-width: 540px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+  }
+
+  // Група кнопок
+  &__actions {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+
+  // Базова кнопка
+  &__button {
+    @include button;
+  }
+
+  // Ghost
+  &__button--ghost {
+    background: transparent;
+    border: 1px solid $glass-border;
+    color: $title-color;
+    padding: ($spacing-md * 1.1) ($spacing-lg * 1.2);
+
+    &:hover {
+      border-color: $accent-color;
+      color: $title-color;
+    }
+  }
+
+  // Primary з сяйвом
+  &__button--primary {
+    box-shadow: $shadow-glow;
+  }
+
+  // Контейнер 3D-орбіти
+  &__orbit {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 500px;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+    perspective: 1600px;
+  }
+
+  // Карти на орбіті
+  &__cards {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+  }
+
+  // Планшет
+  @include tablet {
+    &__inner {
+      padding: 0 40px;
+    }
+
+    &__orbit {
+      height: 480px;
+    }
+  }
+
+  // Мобільна адаптація
+  @include mobile {
+    padding: 0;
+
+    &__inner {
+      padding: 0 32px;
+    }
+
+    &__orbit {
+      height: 360px;
+    }
+
+    &__actions {
+      width: 100%;
+      grid-auto-flow: row;
+      justify-items: stretch;
+    }
+
+    &__button--ghost,
+    &__button--primary {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}

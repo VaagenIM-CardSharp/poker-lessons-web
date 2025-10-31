@@ -1,29 +1,40 @@
-@use '../base/variables' as variables;
+@use '../base/variables' as *;
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-    background-color: variables.$bg-color;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  background:
+    radial-gradient(120% 120% at 10% 10%, rgba(255, 51, 51, 0.18), transparent 55%),
+    radial-gradient(90% 90% at 80% 0%, rgba(255, 107, 53, 0.12), transparent 60%),
+    $bg-color;
+  color: $text-color;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: $font-Body;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(55% 55% at 50% 0%, rgba(255, 51, 51, 0.35), transparent 60%),
+    radial-gradient(60% 60% at 100% 100%, rgba(255, 165, 0, 0.2), transparent 70%);
+  pointer-events: none;
+  z-index: -2;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 variables.$spacing-lg;
-    width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: $spacing-lg;
 }
 
-.main {
-    flex: 1;
+main { flex: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }

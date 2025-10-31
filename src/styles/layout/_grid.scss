@@ -1,60 +1,34 @@
 @use '../base/variables' as variables;
 
 .grid {
-    display: grid;
-    gap: variables.$spacing-lg;
-    
-    &--2-cols {
-        grid-template-columns: repeat(2, 1fr);
-        
-        @media (max-width: 768px) {
-            grid-template-columns: 1fr;
-        }
-    }
-    
-    &--3-cols {
-        grid-template-columns: repeat(3, 1fr);
-        
-        @media (max-width: 1024px) {
-            grid-template-columns: repeat(2, 1fr);
-        }
-        
-        @media (max-width: 768px) {
-            grid-template-columns: 1fr;
-        }
-    }
-    
-    &--4-cols {
-        grid-template-columns: repeat(4, 1fr);
-        
-        @media (max-width: 1024px) {
-            grid-template-columns: repeat(2, 1fr);
-        }
-        
-        @media (max-width: 768px) {
-            grid-template-columns: 1fr;
-        }
-    }
+  display: grid;
+  gap: variables.$spacing-lg;
+
+  &--2-cols { grid-template-columns: repeat(2, 1fr); }
+  &--3-cols { grid-template-columns: repeat(3, 1fr); }
+  &--4-cols { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* планшеты и меньше: 3/4 → 2 колонки */
+@media (max-width: variables.$breakpoint-tablet) {
+  .grid--3-cols,
+  .grid--4-cols { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* мобильные: всё → 1 колонку */
+@media (max-width: variables.$breakpoint-mobile) {
+  .grid--2-cols,
+  .grid--3-cols,
+  .grid--4-cols { grid-template-columns: 1fr; }
 }
 
 .flex {
-    display: flex;
-    gap: variables.$spacing-lg;
-    
-    &--wrap {
-        flex-wrap: wrap;
-    }
-    
-    &--center {
-        justify-content: center;
-        align-items: center;
-    }
-    
-    &--between {
-        justify-content: space-between;
-    }
-    
-    &--column {
-        flex-direction: column;
-    }
+  display: flex;
+  gap: variables.$spacing-lg;
+
+  &--wrap   { flex-wrap: wrap; }
+  &--center { justify-content: center; align-items: center; }
+  &--between{ justify-content: space-between; }
+  &--column { flex-direction: column; }
 }
+
