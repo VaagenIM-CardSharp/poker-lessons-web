@@ -33,10 +33,10 @@
 
   @include mobile {
     padding-inline: 1.25rem;
-    padding-block: 3.5rem;
+    padding-block: 3.5rem 0;
 
     &__container {
-      gap: 2rem;
+      gap: 0rem;
     }
   }
 }
