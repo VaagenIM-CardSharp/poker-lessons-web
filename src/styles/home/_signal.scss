@@ -4,6 +4,7 @@
 // Секція зі світловим ефектом
 .signal {
   position: relative;
+  padding: 10px;
 
   // Основний контейнер із градієнтом, склом та grid-розкладкою
   &__inner {
@@ -105,6 +106,7 @@
   @include mobile {
     &__inner {
       grid-template-columns: 1fr;
+      padding: 20px;
     }
 
     &__form {
