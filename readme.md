@@ -57,3 +57,11 @@ Det ble utviklet en statisk flerside-applikasjon som presenterer Card Sharp Zone
 - Card Sharp Zone kjører som en statisk Vite-bygd nettside på GitHub Pages uten manuelle deploysteg.
 - Hver endring som merges til `main` bygger, tester og publiserer automatisk den ferske `dist/`.
 - Koden er rigget for videre utvidelser (flere leksjoner, 3D-animasjoner med Three.js eller autentiseringsflows) uten å endre på CI/CD-oppsettet.
+
+## Kompetansemål
+
+**Driftsstøtte** – utforskning av driftsarkitekturen og pipeline-dokumentasjonen viser hvordan hosting, helmiljø og adgangsstyring er lagt opp (*utforske og beskrive komponenter i en driftsarkitektur*, *gjøre rede for prinsipper og strukturer for skytjenester og virtuelle tjenester*, *planlegge og dokumentere arbeidsprosesser og IT-løsninger*, *forenkle og automatisere arbeidsprosesser i utvikling av IT-løsninger*).
+
+**Brukerstøtte** – README fungerer som brukerrettet veiledning med riktig terminologi og tydelige steg (*kartlegge behovet for og utvikle veiledninger for brukere og kunder*, *bruke og tilpasse kommunikasjonsform og fagterminologi i møte med brukere, kunder og fagmiljø*).
+
+**Utvikling** – prosjektet begrunner teknologivalg, beskriver funksjonelle krav, UI-tilpasninger og versjonskontrollpraksis (*vurdere fordeler og ulemper ved ulike programmeringsspråk og velge og anvende relevante programmeringsspråk og algoritmer i eget arbeid*, *lage og begrunne funksjonelle krav til en IT-løsning basert på behovskartlegging*, *vurdere brukergrensesnitt til IT-tjenester og designe tjenester som er tilpasset brukernes behov*, *gjøre rede for hensikten med teknisk dokumentasjon og utarbeide teknisk dokumentasjon for IT-løsninger*, *beskrive og anvende relevante versjonskontrollsystemer i utviklingsprosjekter*).
