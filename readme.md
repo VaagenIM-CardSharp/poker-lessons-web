@@ -58,7 +58,7 @@ Prosjektet leverer en statisk front-end med et interaktivt hero-parti, en lesson
   - `bruke og tilpasse kommunikasjonsform og fagterminologi i møte med brukere, kunder og fagmiljø` – dokumentasjonen benytter norsk fagspråk og forklarer tekniske elementer uten markedsføring.
 
 - **Utvikling**
-  - `vurdere fordeler og ulemper ved ulike programmeringsspråk ...` – beskriver hvorfor Vite, SCSS og vanilla JS (med planlagt Three.js-støtte) er valgt.
+  - `vurdere fordeler og ulemper ved ulike programmeringsspråk ...` – beskriver hvorfor Vite, SCSS og vanilla JS er valgt.
   - `lage og begrunne funksjonelle krav til en IT-løsning basert på behovskartlegging` – prosjektskildringen dekker forventede seksjoner og funksjoner (hero, lessons, signal, login).
   - `vurdere brukergrensesnitt til IT-tjenester og designe tjenester som er tilpasset brukernes behov` – redegjør for responsivitet, tilgjengelighet og gjenbruk av komponenter.
   - `gjøre rede for hensikten med teknisk dokumentasjon og utarbeide teknisk dokumentasjon for IT-løsninger` – README er strukturert teknisk dokumentasjon med fokus på arkitektur og drift.
