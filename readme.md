@@ -60,8 +60,19 @@ Det ble utviklet en statisk flerside-applikasjon som presenterer Card Sharp Zone
 
 ## Kompetansemål
 
-**Driftsstøtte** – utforskning av driftsarkitekturen og pipeline-dokumentasjonen viser hvordan hosting, helmiljø og adgangsstyring er lagt opp (*utforske og beskrive komponenter i en driftsarkitektur*, *gjøre rede for prinsipper og strukturer for skytjenester og virtuelle tjenester*, *planlegge og dokumentere arbeidsprosesser og IT-løsninger*, *forenkle og automatisere arbeidsprosesser i utvikling av IT-løsninger*).
+- **Driftsstøtte**
+  - `utforske og beskrive komponenter i en driftsarkitektur` – README skisserer hele front-end-/deploy-arkitekturen (Vite-build, flerinnganger, GitHub Pages-miljø).
+  - `gjøre rede for prinsipper og strukturer for skytjenester og virtuelle tjenester` – beskriver hvordan GitHub Actions, Pages og token-rettigheter samarbeider for hosting.
+  - `planlegge og dokumentere arbeidsprosesser og IT-løsninger` – arbeidsflytseksjonen dokumenterer hvert steg fra prosjektopprettelse til testing.
+  - `forenkle og automatisere arbeidsprosesser i utvikling av IT-løsninger` – CI/CD-rutinen automatiserer bygg og utrulling på hver push.
 
-**Brukerstøtte** – README fungerer som brukerrettet veiledning med riktig terminologi og tydelige steg (*kartlegge behovet for og utvikle veiledninger for brukere og kunder*, *bruke og tilpasse kommunikasjonsform og fagterminologi i møte med brukere, kunder og fagmiljø*).
+- **Brukerstøtte**
+  - `kartlegge behovet for og utvikle veiledninger for brukere og kunder` – README fungerer som praktisk brukerveiledning for medstudenter og lærere.
+  - `bruke og tilpasse kommunikasjonsform og fagterminologi i møte med brukere, kunder og fagmiljø` – dokumentasjonen er skrevet på norsk med balansert fagterminologi.
 
-**Utvikling** – prosjektet begrunner teknologivalg, beskriver funksjonelle krav, UI-tilpasninger og versjonskontrollpraksis (*vurdere fordeler og ulemper ved ulike programmeringsspråk og velge og anvende relevante programmeringsspråk og algoritmer i eget arbeid*, *lage og begrunne funksjonelle krav til en IT-løsning basert på behovskartlegging*, *vurdere brukergrensesnitt til IT-tjenester og designe tjenester som er tilpasset brukernes behov*, *gjøre rede for hensikten med teknisk dokumentasjon og utarbeide teknisk dokumentasjon for IT-løsninger*, *beskrive og anvende relevante versjonskontrollsystemer i utviklingsprosjekter*).
+- **Utvikling**
+  - `vurdere fordeler og ulemper ved ulike programmeringsspråk ...` – redegjør for valg av Vite, SCSS og vanilla JS (med Three.js-planer) for ytelse og enkelhet.
+  - `lage og begrunne funksjonelle krav til en IT-løsning basert på behovskartlegging` – prosjektskildringen forklarer nødvendige seksjoner (hero, lessons, signal, login).
+  - `vurdere brukergrensesnitt til IT-tjenester og designe tjenester som er tilpasset brukernes behov` – fokus på responsivitet, tilgjengelighet og komponentdeling i HTML/SCSS.
+  - `gjøre rede for hensikten med teknisk dokumentasjon og utarbeide teknisk dokumentasjon for IT-løsninger` – hele README er teknisk dokumentasjon for løsningen.
+  - `beskrive og anvende relevante versjonskontrollsystemer i utviklingsprosjekter` – bruker GitHub-arbeidsflyt med Actions og Pages bundet til `main`.
